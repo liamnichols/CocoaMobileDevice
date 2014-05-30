@@ -11,25 +11,25 @@
 #import <libimobiledevice/libimobiledevice.h>
 #import <libimobiledevice/lockdown.h>
 
-NSString * CMDeviceReadDomainDiskUsage                      = @"com.apple.disk_usage";
-NSString * CMDeviceReadDomainBattery                        = @"com.apple.mobile.battery";
-NSString * CMDeviceReadDomainDeveloper                      = @"com.apple.xcode.developerdomain";
-NSString * CMDeviceReadDomainInternational                  = @"com.apple.international";
-NSString * CMDeviceReadDomainDataSync                       = @"com.apple.mobile.data_sync";
-NSString * CMDeviceReadDomainTetheredSync                   = @"com.apple.mobile.tethered_sync";
-NSString * CMDeviceReadDomainMobileApplicationUsage         = @"com.apple.mobile.mobile_application_usage";
-NSString * CMDeviceReadDomainBackup                         = @"com.apple.mobile.backup";
-NSString * CMDeviceReadDomainNikita                         = @"com.apple.mobile.nikita";
-NSString * CMDeviceReadDomainRestriction                    = @"com.apple.mobile.restriction";
-NSString * CMDeviceReadDomainUserPreferences                = @"com.apple.mobile.user_preferences";
-NSString * CMDeviceReadDomainSyncDataClass                  = @"com.apple.mobile.sync_data_class";
-NSString * CMDeviceReadDomainSoftwareBehavior               = @"com.apple.mobile.software_behavior";
-NSString * CMDeviceReadDomainMusicLibraryProcessComands     = @"com.apple.mobile.iTunes.SQLMusicLibraryPostProcessCommands";
-NSString * CMDeviceReadDomainAccessories                    = @"com.apple.mobile.iTunes.accessories";
-NSString * CMDeviceReadDomainFairplay                       = @"com.apple.fairplay";
-NSString * CMDeviceReadDomainiTunes                         = @"com.apple.iTunes";
-NSString * CMDeviceReadDomainMobileiTunesStore              = @"com.apple.mobile.iTunes.store";
-NSString * CMDeviceReadDomainMobileiTunes                   = @"com.apple.mobile.iTunes";
+NSString *CMDeviceDomainDiskUsage = @"com.apple.disk_usage";
+NSString *CMDeviceDomainBattery = @"com.apple.mobile.battery";
+NSString *CMDeviceDomainDeveloper = @"com.apple.xcode.developerdomain";
+NSString *CMDeviceDomainInternational = @"com.apple.international";
+NSString *CMDeviceDomainDataSync = @"com.apple.mobile.data_sync";
+NSString *CMDeviceDomainTetheredSync = @"com.apple.mobile.tethered_sync";
+NSString *CMDeviceDomainMobileApplicationUsage = @"com.apple.mobile.mobile_application_usage";
+NSString *CMDeviceDomainBackup = @"com.apple.mobile.backup";
+NSString *CMDeviceDomainNikita = @"com.apple.mobile.nikita";
+NSString *CMDeviceDomainRestriction = @"com.apple.mobile.restriction";
+NSString *CMDeviceDomainUserPreferences = @"com.apple.mobile.user_preferences";
+NSString *CMDeviceDomainSyncDataClass = @"com.apple.mobile.sync_data_class";
+NSString *CMDeviceDomainSoftwareBehavior = @"com.apple.mobile.software_behavior";
+NSString *CMDeviceDomainMusicLibraryProcessComands = @"com.apple.mobile.iTunes.SQLMusicLibraryPostProcessCommands";
+NSString *CMDeviceDomainAccessories = @"com.apple.mobile.iTunes.accessories";
+NSString *CMDeviceDomainFairplay = @"com.apple.fairplay";
+NSString *CMDeviceDomainiTunes = @"com.apple.iTunes";
+NSString *CMDeviceDomainMobileiTunesStore = @"com.apple.mobile.iTunes.store";
+NSString *CMDeviceDomainMobileiTunes = @"com.apple.mobile.iTunes";
 
 @interface CMDevice ()
 

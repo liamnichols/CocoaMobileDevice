@@ -7,14 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		5342B2B21937EE5A0074A843 /* CMDevice.h in Headers */ = {isa = PBXBuildFile; fileRef = 5342B2B01937EE5A0074A843 /* CMDevice.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		5342B2B31937EE5A0074A843 /* CMDevice.m in Sources */ = {isa = PBXBuildFile; fileRef = 5342B2B11937EE5A0074A843 /* CMDevice.m */; };
-		5342B2B61937F3670074A843 /* CMPlistSerialization.h in Headers */ = {isa = PBXBuildFile; fileRef = 5342B2B41937F3670074A843 /* CMPlistSerialization.h */; };
-		5342B2B71937F3670074A843 /* CMPlistSerialization.m in Sources */ = {isa = PBXBuildFile; fileRef = 5342B2B51937F3670074A843 /* CMPlistSerialization.m */; };
 		5342B2B9193872DC0074A843 /* libimobiledevice.4.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 5342B2B8193872DC0074A843 /* libimobiledevice.4.dylib */; };
 		5342B2BB193872EA0074A843 /* libplist.2.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 5342B2BA193872EA0074A843 /* libplist.2.dylib */; };
-		5342B2BE193898050074A843 /* NSError+libmobiledeviceError.h in Headers */ = {isa = PBXBuildFile; fileRef = 5342B2BC193898050074A843 /* NSError+libmobiledeviceError.h */; };
-		5342B2BF193898050074A843 /* NSError+libmobiledeviceError.m in Sources */ = {isa = PBXBuildFile; fileRef = 5342B2BD193898050074A843 /* NSError+libmobiledeviceError.m */; };
 		53942B2B1937DF45006B5F2C /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 53942B2A1937DF45006B5F2C /* Cocoa.framework */; };
 		53942B351937DF45006B5F2C /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 53942B331937DF45006B5F2C /* InfoPlist.strings */; };
 		53942B401937DF45006B5F2C /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 53942B3F1937DF45006B5F2C /* XCTest.framework */; };
@@ -22,8 +16,6 @@
 		53942B441937DF45006B5F2C /* CocoaMobileDevice.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 53942B271937DF45006B5F2C /* CocoaMobileDevice.framework */; };
 		53942B4A1937DF45006B5F2C /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 53942B481937DF45006B5F2C /* InfoPlist.strings */; };
 		53942B4C1937DF45006B5F2C /* CocoaMobileDeviceTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 53942B4B1937DF45006B5F2C /* CocoaMobileDeviceTests.m */; };
-		53942BE51937E09A006B5F2C /* CMDeviceManger.h in Headers */ = {isa = PBXBuildFile; fileRef = 53942BE31937E09A006B5F2C /* CMDeviceManger.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		53942BE61937E09A006B5F2C /* CMDeviceManger.m in Sources */ = {isa = PBXBuildFile; fileRef = 53942BE41937E09A006B5F2C /* CMDeviceManger.m */; };
 		53942BE71937E19A006B5F2C /* CocoaMobileDevice.h in Headers */ = {isa = PBXBuildFile; fileRef = 53942B371937DF45006B5F2C /* CocoaMobileDevice.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		53942C0D1937E1EA006B5F2C /* afc.h in Headers */ = {isa = PBXBuildFile; fileRef = 53942BEC1937E1EA006B5F2C /* afc.h */; };
 		53942C0E1937E1EA006B5F2C /* diagnostics_relay.h in Headers */ = {isa = PBXBuildFile; fileRef = 53942BED1937E1EA006B5F2C /* diagnostics_relay.h */; };
@@ -57,6 +49,14 @@
 		53942C2A1937E1EB006B5F2C /* String.h in Headers */ = {isa = PBXBuildFile; fileRef = 53942C0A1937E1EA006B5F2C /* String.h */; };
 		53942C2B1937E1EB006B5F2C /* Structure.h in Headers */ = {isa = PBXBuildFile; fileRef = 53942C0B1937E1EA006B5F2C /* Structure.h */; };
 		53942C2C1937E1EB006B5F2C /* Uid.h in Headers */ = {isa = PBXBuildFile; fileRef = 53942C0C1937E1EA006B5F2C /* Uid.h */; };
+		DF27501B6E639E2B3265B311 /* NSError+libmobiledeviceError.h in Headers */ = {isa = PBXBuildFile; fileRef = DF275A3C18A7E9FA1D89112D /* NSError+libmobiledeviceError.h */; };
+		DF27522146FC2881D7F2725D /* CMPlistSerialization.m in Sources */ = {isa = PBXBuildFile; fileRef = DF2752656BA49577EC6FC44C /* CMPlistSerialization.m */; };
+		DF2754ACED1C0C1A0493A961 /* CMDeviceManger.m in Sources */ = {isa = PBXBuildFile; fileRef = DF2754C6EC78BEE86C760BA1 /* CMDeviceManger.m */; };
+		DF27588747A33C3F01CC2744 /* CMDevice.m in Sources */ = {isa = PBXBuildFile; fileRef = DF2754D4DFDCDF1AEF36DEC5 /* CMDevice.m */; };
+		DF275A8E0F8F9C3E03C89595 /* CMDevice.h in Headers */ = {isa = PBXBuildFile; fileRef = DF275B181C90BAAA31DC4B4A /* CMDevice.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		DF275AC93D8125D872A8FC7D /* CMPlistSerialization.h in Headers */ = {isa = PBXBuildFile; fileRef = DF275E9DBDE905FAD2E7D11C /* CMPlistSerialization.h */; };
+		DF275CDEE0E19141086A3808 /* NSError+libmobiledeviceError.m in Sources */ = {isa = PBXBuildFile; fileRef = DF2754792EDECC5482F1CD2C /* NSError+libmobiledeviceError.m */; };
+		DF275EEB4974F3B5A70902C5 /* CMDeviceManger.h in Headers */ = {isa = PBXBuildFile; fileRef = DF27542FB76DE787D730442E /* CMDeviceManger.h */; settings = {ATTRIBUTES = (Public, ); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -70,14 +70,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		5342B2B01937EE5A0074A843 /* CMDevice.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CMDevice.h; sourceTree = "<group>"; };
-		5342B2B11937EE5A0074A843 /* CMDevice.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CMDevice.m; sourceTree = "<group>"; };
-		5342B2B41937F3670074A843 /* CMPlistSerialization.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CMPlistSerialization.h; sourceTree = "<group>"; };
-		5342B2B51937F3670074A843 /* CMPlistSerialization.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CMPlistSerialization.m; sourceTree = "<group>"; };
 		5342B2B8193872DC0074A843 /* libimobiledevice.4.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; path = libimobiledevice.4.dylib; sourceTree = "<group>"; };
 		5342B2BA193872EA0074A843 /* libplist.2.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; path = libplist.2.dylib; sourceTree = "<group>"; };
-		5342B2BC193898050074A843 /* NSError+libmobiledeviceError.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSError+libmobiledeviceError.h"; sourceTree = "<group>"; };
-		5342B2BD193898050074A843 /* NSError+libmobiledeviceError.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSError+libmobiledeviceError.m"; sourceTree = "<group>"; };
 		53942B271937DF45006B5F2C /* CocoaMobileDevice.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = CocoaMobileDevice.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		53942B2A1937DF45006B5F2C /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = System/Library/Frameworks/Cocoa.framework; sourceTree = SDKROOT; };
 		53942B2D1937DF45006B5F2C /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -92,8 +86,6 @@
 		53942B471937DF45006B5F2C /* CocoaMobileDeviceTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "CocoaMobileDeviceTests-Info.plist"; sourceTree = "<group>"; };
 		53942B491937DF45006B5F2C /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		53942B4B1937DF45006B5F2C /* CocoaMobileDeviceTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CocoaMobileDeviceTests.m; sourceTree = "<group>"; };
-		53942BE31937E09A006B5F2C /* CMDeviceManger.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CMDeviceManger.h; sourceTree = "<group>"; };
-		53942BE41937E09A006B5F2C /* CMDeviceManger.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CMDeviceManger.m; sourceTree = "<group>"; };
 		53942BEC1937E1EA006B5F2C /* afc.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = afc.h; sourceTree = "<group>"; };
 		53942BED1937E1EA006B5F2C /* diagnostics_relay.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = diagnostics_relay.h; sourceTree = "<group>"; };
 		53942BEE1937E1EA006B5F2C /* file_relay.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = file_relay.h; sourceTree = "<group>"; };
@@ -126,6 +118,14 @@
 		53942C0A1937E1EA006B5F2C /* String.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = String.h; sourceTree = "<group>"; };
 		53942C0B1937E1EA006B5F2C /* Structure.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Structure.h; sourceTree = "<group>"; };
 		53942C0C1937E1EA006B5F2C /* Uid.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Uid.h; sourceTree = "<group>"; };
+		DF2752656BA49577EC6FC44C /* CMPlistSerialization.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CMPlistSerialization.m; sourceTree = "<group>"; };
+		DF27542FB76DE787D730442E /* CMDeviceManger.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CMDeviceManger.h; sourceTree = "<group>"; };
+		DF2754792EDECC5482F1CD2C /* NSError+libmobiledeviceError.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSError+libmobiledeviceError.m"; sourceTree = "<group>"; };
+		DF2754C6EC78BEE86C760BA1 /* CMDeviceManger.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CMDeviceManger.m; sourceTree = "<group>"; };
+		DF2754D4DFDCDF1AEF36DEC5 /* CMDevice.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CMDevice.m; sourceTree = "<group>"; };
+		DF275A3C18A7E9FA1D89112D /* NSError+libmobiledeviceError.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSError+libmobiledeviceError.h"; sourceTree = "<group>"; };
+		DF275B181C90BAAA31DC4B4A /* CMDevice.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CMDevice.h; sourceTree = "<group>"; };
+		DF275E9DBDE905FAD2E7D11C /* CMPlistSerialization.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CMPlistSerialization.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -199,14 +199,9 @@
 			children = (
 				53942B371937DF45006B5F2C /* CocoaMobileDevice.h */,
 				53942B311937DF45006B5F2C /* Supporting Files */,
-				53942BE31937E09A006B5F2C /* CMDeviceManger.h */,
-				53942BE41937E09A006B5F2C /* CMDeviceManger.m */,
-				5342B2B01937EE5A0074A843 /* CMDevice.h */,
-				5342B2B11937EE5A0074A843 /* CMDevice.m */,
-				5342B2B41937F3670074A843 /* CMPlistSerialization.h */,
-				5342B2B51937F3670074A843 /* CMPlistSerialization.m */,
-				5342B2BC193898050074A843 /* NSError+libmobiledeviceError.h */,
-				5342B2BD193898050074A843 /* NSError+libmobiledeviceError.m */,
+				DF275794DF839C4A626630F0 /* Serializers */,
+				DF2754376C50BFF6DDDF85BA /* Categories */,
+				DF275939511133F16BE99DBE /* Device */,
 			);
 			path = CocoaMobileDevice;
 			sourceTree = "<group>";
@@ -294,6 +289,35 @@
 			path = plist;
 			sourceTree = "<group>";
 		};
+		DF2754376C50BFF6DDDF85BA /* Categories */ = {
+			isa = PBXGroup;
+			children = (
+				DF2754792EDECC5482F1CD2C /* NSError+libmobiledeviceError.m */,
+				DF275A3C18A7E9FA1D89112D /* NSError+libmobiledeviceError.h */,
+			);
+			path = Categories;
+			sourceTree = "<group>";
+		};
+		DF275794DF839C4A626630F0 /* Serializers */ = {
+			isa = PBXGroup;
+			children = (
+				DF2752656BA49577EC6FC44C /* CMPlistSerialization.m */,
+				DF275E9DBDE905FAD2E7D11C /* CMPlistSerialization.h */,
+			);
+			path = Serializers;
+			sourceTree = "<group>";
+		};
+		DF275939511133F16BE99DBE /* Device */ = {
+			isa = PBXGroup;
+			children = (
+				DF2754C6EC78BEE86C760BA1 /* CMDeviceManger.m */,
+				DF275B181C90BAAA31DC4B4A /* CMDevice.h */,
+				DF27542FB76DE787D730442E /* CMDeviceManger.h */,
+				DF2754D4DFDCDF1AEF36DEC5 /* CMDevice.m */,
+			);
+			path = Device;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXHeadersBuildPhase section */
@@ -303,8 +327,6 @@
 			files = (
 				53942C0D1937E1EA006B5F2C /* afc.h in Headers */,
 				53942C241937E1EB006B5F2C /* Integer.h in Headers */,
-				5342B2B61937F3670074A843 /* CMPlistSerialization.h in Headers */,
-				5342B2B21937EE5A0074A843 /* CMDevice.h in Headers */,
 				53942C1C1937E1EB006B5F2C /* sbservices.h in Headers */,
 				53942C0E1937E1EA006B5F2C /* diagnostics_relay.h in Headers */,
 				53942C201937E1EB006B5F2C /* Boolean.h in Headers */,
@@ -328,7 +350,6 @@
 				53942C121937E1EA006B5F2C /* installation_proxy.h in Headers */,
 				53942C281937E1EB006B5F2C /* plist.h in Headers */,
 				53942C2B1937E1EB006B5F2C /* Structure.h in Headers */,
-				5342B2BE193898050074A843 /* NSError+libmobiledeviceError.h in Headers */,
 				53942C1F1937E1EB006B5F2C /* Array.h in Headers */,
 				53942C271937E1EB006B5F2C /* plist++.h in Headers */,
 				53942C221937E1EB006B5F2C /* Date.h in Headers */,
@@ -336,8 +357,11 @@
 				53942C2C1937E1EB006B5F2C /* Uid.h in Headers */,
 				53942C191937E1EB006B5F2C /* mobilesync.h in Headers */,
 				53942BE71937E19A006B5F2C /* CocoaMobileDevice.h in Headers */,
-				53942BE51937E09A006B5F2C /* CMDeviceManger.h in Headers */,
 				53942C131937E1EA006B5F2C /* libimobiledevice.h in Headers */,
+				DF275AC93D8125D872A8FC7D /* CMPlistSerialization.h in Headers */,
+				DF27501B6E639E2B3265B311 /* NSError+libmobiledeviceError.h in Headers */,
+				DF275A8E0F8F9C3E03C89595 /* CMDevice.h in Headers */,
+				DF275EEB4974F3B5A70902C5 /* CMDeviceManger.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -436,10 +460,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				5342B2BF193898050074A843 /* NSError+libmobiledeviceError.m in Sources */,
-				5342B2B71937F3670074A843 /* CMPlistSerialization.m in Sources */,
-				53942BE61937E09A006B5F2C /* CMDeviceManger.m in Sources */,
-				5342B2B31937EE5A0074A843 /* CMDevice.m in Sources */,
+				DF27522146FC2881D7F2725D /* CMPlistSerialization.m in Sources */,
+				DF275CDEE0E19141086A3808 /* NSError+libmobiledeviceError.m in Sources */,
+				DF2754ACED1C0C1A0493A961 /* CMDeviceManger.m in Sources */,
+				DF27588747A33C3F01CC2744 /* CMDevice.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

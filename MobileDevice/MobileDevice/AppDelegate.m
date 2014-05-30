@@ -97,7 +97,7 @@
     
     if (selectedDevice && [selectedDevice connect])
     {
-        NSNumber *capacity = [selectedDevice readDomain:CMDeviceReadDomainDiskUsage key:@"TotalDataCapacity"];
+        NSNumber *capacity = [selectedDevice readDomain:CMDeviceDomainDiskUsage key:@"TotalDataCapacity"];
         
         self.deviceNameTextField.stringValue = selectedDevice.deviceName;
         self.modelLabel.stringValue = [selectedDevice readDomain:nil key:@"ProductType"];
