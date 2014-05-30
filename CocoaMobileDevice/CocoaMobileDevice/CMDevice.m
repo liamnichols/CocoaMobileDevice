@@ -7,8 +7,29 @@
 
 #import "CMDevice.h"
 #import "CMPlistSerialization.h"
+#import "NSError+libmobiledeviceError.h"
 #import <libimobiledevice/libimobiledevice.h>
 #import <libimobiledevice/lockdown.h>
+
+NSString * CMDeviceReadDomainDiskUsage                      = @"com.apple.disk_usage";
+NSString * CMDeviceReadDomainBattery                        = @"com.apple.mobile.battery";
+NSString * CMDeviceReadDomainDeveloper                      = @"com.apple.xcode.developerdomain";
+NSString * CMDeviceReadDomainInternational                  = @"com.apple.international";
+NSString * CMDeviceReadDomainDataSync                       = @"com.apple.mobile.data_sync";
+NSString * CMDeviceReadDomainTetheredSync                   = @"com.apple.mobile.tethered_sync";
+NSString * CMDeviceReadDomainMobileApplicationUsage         = @"com.apple.mobile.mobile_application_usage";
+NSString * CMDeviceReadDomainBackup                         = @"com.apple.mobile.backup";
+NSString * CMDeviceReadDomainNikita                         = @"com.apple.mobile.nikita";
+NSString * CMDeviceReadDomainRestriction                    = @"com.apple.mobile.restriction";
+NSString * CMDeviceReadDomainUserPreferences                = @"com.apple.mobile.user_preferences";
+NSString * CMDeviceReadDomainSyncDataClass                  = @"com.apple.mobile.sync_data_class";
+NSString * CMDeviceReadDomainSoftwareBehavior               = @"com.apple.mobile.software_behavior";
+NSString * CMDeviceReadDomainMusicLibraryProcessComands     = @"com.apple.mobile.iTunes.SQLMusicLibraryPostProcessCommands";
+NSString * CMDeviceReadDomainAccessories                    = @"com.apple.mobile.iTunes.accessories";
+NSString * CMDeviceReadDomainFairplay                       = @"com.apple.fairplay";
+NSString * CMDeviceReadDomainiTunes                         = @"com.apple.iTunes";
+NSString * CMDeviceReadDomainMobileiTunesStore              = @"com.apple.mobile.iTunes.store";
+NSString * CMDeviceReadDomainMobileiTunes                   = @"com.apple.mobile.iTunes";
 
 @interface CMDevice ()
 
@@ -22,128 +43,6 @@
 {
     lockdownd_client_t client;
 }
-
-static int indent_level = 0;
-
-static void plist_node_to_string(plist_t node);
-
-static void plist_array_to_string(plist_t node)
-{
-	/* iterate over items */
-	int i, count;
-	plist_t subnode = NULL;
-    
-	count = plist_array_get_size(node);
-    
-	for (i = 0; i < count; i++) {
-		subnode = plist_array_get_item(node, i);
-		printf("%*s", indent_level, "");
-		printf("%d: ", i);
-		plist_node_to_string(subnode);
-	}
-}
-
-static void plist_dict_to_string(plist_t node)
-{
-	/* iterate over key/value pairs */
-	plist_dict_iter it = NULL;
-    
-	char* key = NULL;
-	plist_t subnode = NULL;
-	plist_dict_new_iter(node, &it);
-	plist_dict_next_item(node, it, &key, &subnode);
-	while (subnode)
-	{
-		printf("%*s", indent_level, "");
-		printf("%s", key);
-		if (plist_get_node_type(subnode) == PLIST_ARRAY)
-			printf("[%d]: ", plist_array_get_size(subnode));
-		else
-			printf(": ");
-		free(key);
-		key = NULL;
-		plist_node_to_string(subnode);
-		plist_dict_next_item(node, it, &key, &subnode);
-	}
-	free(it);
-}
-
-static void plist_node_to_string(plist_t node)
-{
-	char *s = NULL;
-	double d;
-	uint8_t b;
-	uint64_t u = 0;
-    
-	plist_type t;
-    
-	if (!node)
-		return;
-    
-	t = plist_get_node_type(node);
-    
-	switch (t) {
-        case PLIST_BOOLEAN:
-            plist_get_bool_val(node, &b);
-            printf("%s\n", (b ? "true" : "false"));
-            break;
-            
-        case PLIST_UINT:
-            plist_get_uint_val(node, &u);
-            printf("%llu\n", (long long)u);
-            break;
-            
-        case PLIST_REAL:
-            plist_get_real_val(node, &d);
-            printf("%f\n", d);
-            break;
-            
-        case PLIST_STRING:
-            plist_get_string_val(node, &s);
-            printf("%s\n", s);
-            free(s);
-            break;
-            
-        case PLIST_KEY:
-            plist_get_key_val(node, &s);
-            printf("%s: ", s);
-            free(s);
-            break;
-            
-        case PLIST_DATA:
-//            plist_get_data_val(node, &data, &u);
-//            s = g_base64_encode((guchar *)data, u);
-//            free(data);
-//            printf("%s\n", s);
-//            g_free(s);
-            break;
-            
-        case PLIST_DATE:
-//            plist_get_date_val(node, (int32_t*)&tv.tv_sec, (int32_t*)&tv.tv_usec);
-//            s = g_time_val_to_iso8601(&tv);
-//            printf("%s\n", s);
-//            free(s);
-            break;
-            
-        case PLIST_ARRAY:
-            printf("\n");
-            indent_level++;
-            plist_array_to_string(node);
-            indent_level--;
-            break;
-            
-        case PLIST_DICT:
-            printf("\n");
-            indent_level++;
-            plist_dict_to_string(node);
-            indent_level--;
-            break;
-            
-        default:
-            break;
-	}
-}
-
 
 - (id)initWithUDID:(NSString *)UDID
 {
@@ -183,21 +82,87 @@ static void plist_node_to_string(plist_t node)
     return YES;
 }
 
-- (void)read
+-(id)read
+{
+    return [self readDomain:nil];
+}
+
+-(id)readDomain:(NSString *)domain
+{
+    return [self readDomain:domain key:nil];
+}
+
+- (id)readDomain:(NSString *)domain key:(NSString *)key
 {
     plist_t node;
+    const char *cDomain = NULL;
+	const char *cKey = NULL;
     
-    if(lockdownd_get_value(client, NULL, NULL, &node) == LOCKDOWN_E_SUCCESS)
+    if (domain) {
+        cDomain = [domain cStringUsingEncoding:NSUTF8StringEncoding];
+    }
+    
+    if (key) {
+        cKey = [key cStringUsingEncoding:NSUTF8StringEncoding];
+    }
+    
+    if(lockdownd_get_value(client, cDomain, cKey, &node) == LOCKDOWN_E_SUCCESS)
     {
         if (node)
         {
-            id response = [CMPlistSerialization plistObjectFromNode:node];
-            NSLog(@"got: %@", response);
+            id response = [CMPlistSerialization plistObjectFromNode:node error:nil];
+            return response;
             
             plist_free(node);
             node = NULL;
         }
     }
+    
+    return nil;
+}
+
+- (BOOL)writeValue:(id)value toDomain:(NSString *)domain forKey:(NSString *)key error:(NSError **)error
+{
+    NSAssert(key, @"key must be present when writing a value.");
+    
+    if (key)
+    {
+        NSError *plistError = nil;
+        plist_t node = [CMPlistSerialization nodeWithPlistObject:value error:&plistError];
+        const char *cKey = [key cStringUsingEncoding:NSUTF8StringEncoding];;
+        const char *cDomain = NULL;
+        
+        if (domain) {
+            cDomain = [domain cStringUsingEncoding:NSUTF8StringEncoding];
+        }
+        
+        if (node)
+        {
+            idevice_error_t rtn = lockdownd_set_value(client, cDomain, cKey, node);
+            if (rtn == IDEVICE_E_SUCCESS)
+            {
+                return YES;
+            }
+            else
+            {
+                //error about code.
+                *error = [NSError errorWithErrorCode:rtn];
+                return NO;
+            }
+            
+            plist_free(node);
+            node = NULL;
+        }
+        else
+        {
+            *error = plistError;
+            return NO;
+        }
+        
+    }
+    
+    //TODO: error about no key.
+    return NO;
 }
 
 @end

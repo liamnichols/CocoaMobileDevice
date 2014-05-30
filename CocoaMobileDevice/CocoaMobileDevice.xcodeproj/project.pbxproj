@@ -13,6 +13,8 @@
 		5342B2B71937F3670074A843 /* CMPlistSerialization.m in Sources */ = {isa = PBXBuildFile; fileRef = 5342B2B51937F3670074A843 /* CMPlistSerialization.m */; };
 		5342B2B9193872DC0074A843 /* libimobiledevice.4.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 5342B2B8193872DC0074A843 /* libimobiledevice.4.dylib */; };
 		5342B2BB193872EA0074A843 /* libplist.2.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 5342B2BA193872EA0074A843 /* libplist.2.dylib */; };
+		5342B2BE193898050074A843 /* NSError+libmobiledeviceError.h in Headers */ = {isa = PBXBuildFile; fileRef = 5342B2BC193898050074A843 /* NSError+libmobiledeviceError.h */; };
+		5342B2BF193898050074A843 /* NSError+libmobiledeviceError.m in Sources */ = {isa = PBXBuildFile; fileRef = 5342B2BD193898050074A843 /* NSError+libmobiledeviceError.m */; };
 		53942B2B1937DF45006B5F2C /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 53942B2A1937DF45006B5F2C /* Cocoa.framework */; };
 		53942B351937DF45006B5F2C /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 53942B331937DF45006B5F2C /* InfoPlist.strings */; };
 		53942B401937DF45006B5F2C /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 53942B3F1937DF45006B5F2C /* XCTest.framework */; };
@@ -74,6 +76,8 @@
 		5342B2B51937F3670074A843 /* CMPlistSerialization.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CMPlistSerialization.m; sourceTree = "<group>"; };
 		5342B2B8193872DC0074A843 /* libimobiledevice.4.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; path = libimobiledevice.4.dylib; sourceTree = "<group>"; };
 		5342B2BA193872EA0074A843 /* libplist.2.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; path = libplist.2.dylib; sourceTree = "<group>"; };
+		5342B2BC193898050074A843 /* NSError+libmobiledeviceError.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSError+libmobiledeviceError.h"; sourceTree = "<group>"; };
+		5342B2BD193898050074A843 /* NSError+libmobiledeviceError.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSError+libmobiledeviceError.m"; sourceTree = "<group>"; };
 		53942B271937DF45006B5F2C /* CocoaMobileDevice.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = CocoaMobileDevice.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		53942B2A1937DF45006B5F2C /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = System/Library/Frameworks/Cocoa.framework; sourceTree = SDKROOT; };
 		53942B2D1937DF45006B5F2C /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -201,6 +205,8 @@
 				5342B2B11937EE5A0074A843 /* CMDevice.m */,
 				5342B2B41937F3670074A843 /* CMPlistSerialization.h */,
 				5342B2B51937F3670074A843 /* CMPlistSerialization.m */,
+				5342B2BC193898050074A843 /* NSError+libmobiledeviceError.h */,
+				5342B2BD193898050074A843 /* NSError+libmobiledeviceError.m */,
 			);
 			path = CocoaMobileDevice;
 			sourceTree = "<group>";
@@ -322,6 +328,7 @@
 				53942C121937E1EA006B5F2C /* installation_proxy.h in Headers */,
 				53942C281937E1EB006B5F2C /* plist.h in Headers */,
 				53942C2B1937E1EB006B5F2C /* Structure.h in Headers */,
+				5342B2BE193898050074A843 /* NSError+libmobiledeviceError.h in Headers */,
 				53942C1F1937E1EB006B5F2C /* Array.h in Headers */,
 				53942C271937E1EB006B5F2C /* plist++.h in Headers */,
 				53942C221937E1EB006B5F2C /* Date.h in Headers */,
@@ -429,6 +436,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5342B2BF193898050074A843 /* NSError+libmobiledeviceError.m in Sources */,
 				5342B2B71937F3670074A843 /* CMPlistSerialization.m in Sources */,
 				53942BE61937E09A006B5F2C /* CMDeviceManger.m in Sources */,
 				5342B2B31937EE5A0074A843 /* CMDevice.m in Sources */,
@@ -546,6 +554,7 @@
 		53942B501937DF45006B5F2C /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
 				COMBINE_HIDPI_IMAGES = YES;
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
@@ -571,6 +580,7 @@
 		53942B511937DF45006B5F2C /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
 				COMBINE_HIDPI_IMAGES = YES;
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;

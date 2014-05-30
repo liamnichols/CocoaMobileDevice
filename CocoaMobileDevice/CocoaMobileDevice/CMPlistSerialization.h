@@ -11,6 +11,8 @@
 
 @interface CMPlistSerialization : NSObject
 
-+ (id)plistObjectFromNode:(plist_t)node;
++ (id)plistObjectFromNode:(plist_t)node error:(NSError **)error;
+
++ (plist_t)nodeWithPlistObject:(id)object error:(NSError **)error;
 
 @end
