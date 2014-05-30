@@ -10,18 +10,20 @@
 
 FOUNDATION_EXPORT NSString *const CMDeviceMangerDeviceAddedNotification;
 FOUNDATION_EXPORT NSString *const CMDeviceMangerDeviceRemovedNotification;
-FOUNDATION_EXPORT NSString *const CMDeviceMangerNotificationDeviceUDIDKey;
+FOUNDATION_EXPORT NSString *const CMDeviceMangerNotificationDeviceKey;
 
 @interface CMDeviceManger : NSObject
 
 + (instancetype)sharedManager;
 
-- (NSArray *)readConnectedDevices;
+- (NSArray *)readConnectedDeviceUDIDs;
 
 @property (nonatomic, readonly, getter = isSubscribed) BOOL subscribed;
 
 - (BOOL)subscribe:(NSError **)error;
 
 - (BOOL)unsubscribe:(NSError **)error;
+
+- (NSArray *)devices;
 
 @end

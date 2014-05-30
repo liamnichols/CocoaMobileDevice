@@ -144,7 +144,6 @@
     {
         const char *s = [object cStringUsingEncoding:NSASCIIStringEncoding];
         plist_t node = plist_new_string(s);
-        free(&s);
         s = NULL;
         return node;
     }

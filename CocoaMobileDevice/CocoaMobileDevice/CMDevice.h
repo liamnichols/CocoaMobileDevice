@@ -34,13 +34,25 @@ FOUNDATION_EXPORT NSString * CMDeviceReadDomainMobileiTunes;
 
 - (id)initWithUDID:(NSString *)UDID;
 
+/// @name Connecting
+
 - (BOOL)connect;
+
+/// @name Device Name
+
+- (BOOL)loadDeviceName;
+
+@property (nonatomic, readonly) NSString *deviceName;
+
+/// @name Reading Values
 
 - (id)read;
 
 - (id)readDomain:(NSString *)domain;
 
 - (id)readDomain:(NSString *)domain key:(NSString *)key;
+
+/// @name Writing
 
 - (BOOL)writeValue:(id)value toDomain:(NSString *)domain forKey:(NSString *)key error:(NSError **)error;
 

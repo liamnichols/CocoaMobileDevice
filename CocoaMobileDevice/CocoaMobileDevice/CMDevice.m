@@ -37,12 +37,23 @@ NSString * CMDeviceReadDomainMobileiTunes                   = @"com.apple.mobile
 
 @property (nonatomic, assign) BOOL connected;
 
+@property (nonatomic, strong) NSString *deviceName;
+
 @end
 
 @implementation CMDevice
 {
     lockdownd_client_t client;
 }
+
+- (BOOL)isEqual:(id)object
+{
+    if ([object isKindOfClass:[CMDevice class]] && [self.UDID isEqualToString:[object UDID]])
+    {
+        return YES;
+    }
+    return NO;
+};
 
 - (id)initWithUDID:(NSString *)UDID
 {
@@ -163,6 +174,15 @@ NSString * CMDeviceReadDomainMobileiTunes                   = @"com.apple.mobile
     
     //TODO: error about no key.
     return NO;
+}
+
+#pragma mark - Device Name
+
+-(BOOL)loadDeviceName
+{
+    NSString *name = [self readDomain:nil key:@"DeviceName"];
+    self.deviceName = name;
+    return name != nil;
 }
 
 @end

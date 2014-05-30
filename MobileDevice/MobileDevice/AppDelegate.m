@@ -11,8 +11,9 @@
 
 @interface AppDelegate ()
 
-@property (nonatomic, strong) NSMutableArray *udids;
-@property (nonatomic, strong) NSMutableDictionary *deviceNames;
+@property (nonatomic, strong) NSMutableArray *devices;
+
+@property (nonatomic, strong) CMDevice *selectedDevice;
 
 @end
 
@@ -20,9 +21,8 @@
 
 - (void)applicationDidFinishLaunching:(NSNotification *)aNotification
 {
-    self.textView.font = [NSFont fontWithName:@"Courier New" size:12.0];
-    self.udids = [NSMutableArray array];
-    self.deviceNames = [NSMutableDictionary dictionary];
+    self.devices = [NSMutableArray array];
+    [self.deviceNameTextField resignFirstResponder];
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(deviceAddedNotifcation:) name:CMDeviceMangerDeviceAddedNotification object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(deviceRemovedNotifcation:) name:CMDeviceMangerDeviceRemovedNotification object:nil];
@@ -33,124 +33,94 @@
 
 - (void)deviceAddedNotifcation:(NSNotification *)notification
 {
-    NSString *UDID = [notification.userInfo objectForKey:CMDeviceMangerNotificationDeviceUDIDKey];
-    
-    if (![self.udids containsObject:UDID])
-    {
-        dispatch_async(dispatch_get_main_queue(), ^{
-            [self.udids addObject:UDID];
-            
-            if (![self.deviceNames objectForKey:UDID])
-            {
-                CMDevice *device = [[CMDevice alloc] initWithUDID:UDID];
-                if ([device connect])
-                {
-                    id name = [device readDomain:nil key:@"DeviceName"];
-                    if (name)
-                    {
-                        [self.deviceNames setValue:name forKey:UDID];
-                    }
-                }
-            }
-            
-            [self.tableView reloadData];
-        });
-    }
+    [self reloadDeviceList];
 }
 
 - (void)deviceRemovedNotifcation:(NSNotification *)notification
 {
-    NSString *UDID = [notification.userInfo objectForKey:CMDeviceMangerNotificationDeviceUDIDKey];
-    
-    if ([self.udids containsObject:UDID])
-    {
-        dispatch_async(dispatch_get_main_queue(), ^{
-            [self.udids removeObject:UDID];
-            [self.tableView reloadData];
-        });
-    }
+    [self reloadDeviceList];
 }
 
-#pragma mark NSTableView
-
--(NSInteger)numberOfRowsInTableView:(NSTableView *)tableView
+- (void)reloadDeviceList
 {
-    return self.udids.count;
+    dispatch_async(dispatch_get_main_queue(), ^{
+        [self.deviceList removeAllItems];
+        [self.deviceList addItemWithTitle:@"Select a Device"];
+        [[[CMDeviceManger sharedManager] devices] enumerateObjectsUsingBlock:^(CMDevice *device, NSUInteger idx, BOOL *stop) {
+
+            if (device.deviceName)
+            {
+                [self.deviceList addItemWithTitle:device.deviceName];
+            }
+            else if ([device connect] && [device loadDeviceName] && device.deviceName)
+            {
+                [self.deviceList addItemWithTitle:device.deviceName];
+            }
+            else
+            {
+                [self.deviceList addItemWithTitle:device.UDID];
+            }
+            
+        }];
+    });
 }
 
-- (NSView *)tableView:(NSTableView *)tableView
-   viewForTableColumn:(NSTableColumn *)tableColumn
-                  row:(NSInteger)row {
-    
-    // get an existing cell with the MyView identifier if it exists
-    NSTextField *result = [tableView makeViewWithIdentifier:@"MyView" owner:self];
-    
-    // There is no existing cell to reuse so we will create a new one
-    if (result == nil) {
-        
-        result = [[NSTextField alloc] initWithFrame:CGRectZero];
-        [result setBordered:NO];
-        [result setSelectable:NO];
-        [result setBackgroundColor:[NSColor clearColor]];
-        [result setAlignment:NSCenterTextAlignment];
-        [result setIdentifier:@"MyView"];
-        [result setEditable:NO];
-    }
-    
-    NSString *udid = [self.udids objectAtIndex:row];
-    if ([tableColumn.identifier isEqualToString:@"name"])
-        result.stringValue = [self.deviceNames objectForKey:udid] ?: @"Unknown";
-    
-    if ([tableColumn.identifier isEqualToString:@"udid"])
-        result.stringValue = udid;
-    
-    
-    // return the result.
-    return result;
-    
-}
-
--(void)tableViewSelectionDidChange:(NSNotification *)notification
+-(void)deviceListValueChanged:(id)sender
 {
-    self.textView.string = @"";
-    
-    NSInteger row = [self.tableView selectedRow];
-    
-    if (row == -1)
+    NSInteger selectedIndex = [self.deviceList indexOfSelectedItem];
+    if (selectedIndex >= 0 && selectedIndex != NSNotFound)
     {
-        return;
+        if (selectedIndex == 0)
+        {
+            self.selectedDevice = nil;
+        }
+        else
+        {
+            [self setSelectedDevice:[[[CMDeviceManger sharedManager] devices] objectAtIndex:selectedIndex-1]];
+        }
+        
     }
+}
+
+- (void)setSelectedDevice:(CMDevice *)selectedDevice
+{
+    _selectedDevice = selectedDevice;
     
-    NSString *selectedUDID = [self.udids objectAtIndex:row];
+    self.deviceNameTextField.stringValue = @"";
+    self.modelLabel.stringValue = @"";
+    self.versionLabel.stringValue = @"";
+    self.identifierLabel.stringValue = @"";
+    self.serialNumberLabel.stringValue = @"";
+    self.capacityLabel.stringValue = @"";
+    self.phoneNumberLabel.stringValue = @"";
     
-    CMDevice *device = [[CMDevice alloc] initWithUDID:selectedUDID];
-    
-    if ([device connect])
+    if (selectedDevice && [selectedDevice connect])
     {
-        NSMutableDictionary *responses = [NSMutableDictionary dictionary];
+        NSNumber *capacity = [selectedDevice readDomain:CMDeviceReadDomainDiskUsage key:@"TotalDataCapacity"];
         
-        [responses setObject:[device read] forKey:@"general"];
-        [responses setObject:[device readDomain:CMDeviceReadDomainDiskUsage] forKey:CMDeviceReadDomainDiskUsage];
-        [responses setObject:[device readDomain:CMDeviceReadDomainBattery] forKey:CMDeviceReadDomainBattery];
-        [responses setObject:[device readDomain:CMDeviceReadDomainDeveloper] forKey:CMDeviceReadDomainDeveloper];
-        [responses setObject:[device readDomain:CMDeviceReadDomainInternational] forKey:CMDeviceReadDomainInternational];
-        [responses setObject:[device readDomain:CMDeviceReadDomainDataSync] forKey:CMDeviceReadDomainDataSync];
-        [responses setObject:[device readDomain:CMDeviceReadDomainTetheredSync] forKey:CMDeviceReadDomainTetheredSync];
-        [responses setObject:[device readDomain:CMDeviceReadDomainMobileApplicationUsage] forKey:CMDeviceReadDomainMobileApplicationUsage];
-        [responses setObject:[device readDomain:CMDeviceReadDomainBackup] forKey:CMDeviceReadDomainBackup];
-        [responses setObject:[device readDomain:CMDeviceReadDomainNikita] forKey:CMDeviceReadDomainNikita];
-        [responses setObject:[device readDomain:CMDeviceReadDomainRestriction] forKey:CMDeviceReadDomainRestriction];
-        [responses setObject:[device readDomain:CMDeviceReadDomainUserPreferences] forKey:CMDeviceReadDomainRestriction];
-        [responses setObject:[device readDomain:CMDeviceReadDomainSyncDataClass] forKey:CMDeviceReadDomainRestriction];
-        [responses setObject:[device readDomain:CMDeviceReadDomainSoftwareBehavior] forKey:CMDeviceReadDomainSoftwareBehavior];
-        [responses setObject:[device readDomain:CMDeviceReadDomainMusicLibraryProcessComands] forKey:CMDeviceReadDomainMusicLibraryProcessComands];
-        [responses setObject:[device readDomain:CMDeviceReadDomainAccessories] forKey:CMDeviceReadDomainAccessories];
-        [responses setObject:[device readDomain:CMDeviceReadDomainFairplay] forKey:CMDeviceReadDomainFairplay];
-        [responses setObject:[device readDomain:CMDeviceReadDomainiTunes] forKey:CMDeviceReadDomainiTunes];
-        [responses setObject:[device readDomain:CMDeviceReadDomainMobileiTunesStore] forKey:CMDeviceReadDomainMobileiTunesStore];
-        [responses setObject:[device readDomain:CMDeviceReadDomainMobileiTunes] forKey:CMDeviceReadDomainMobileiTunes];
-        
-        self.textView.string = [responses description];
+        self.deviceNameTextField.stringValue = selectedDevice.deviceName;
+        self.modelLabel.stringValue = [selectedDevice readDomain:nil key:@"ProductType"];
+        self.versionLabel.stringValue = [NSString stringWithFormat:@"iOS %@", [selectedDevice readDomain:nil key:@"ProductVersion"]];
+        self.identifierLabel.stringValue = selectedDevice.UDID;
+        self.serialNumberLabel.stringValue = [selectedDevice readDomain:nil key:@"SerialNumber"];
+        self.capacityLabel.stringValue = [NSByteCountFormatter stringFromByteCount:capacity.longLongValue countStyle:NSByteCountFormatterCountStyleFile];
+        self.phoneNumberLabel.stringValue = [selectedDevice readDomain:nil key:@"PhoneNumber"];
+    }
+}
+
+- (IBAction)updateDeviceName:(id)sender
+{
+    if (self.deviceNameTextField.stringValue.length > 0 && self.selectedDevice && [self.selectedDevice connect])
+    {
+        BOOL result = [self.selectedDevice writeValue:self.deviceNameTextField.stringValue toDomain:nil forKey:@"DeviceName" error:nil];
+        if (result)
+        {
+            NSLog(@"device name updated.");
+        }
+        else
+        {
+            NSLog(@"error updating device name.");
+        }
     }
 }
 

@@ -7,16 +7,21 @@
 //
 
 #import "CMDeviceManger.h"
+#import "CMDevice.h"
 #import <libimobiledevice/libimobiledevice.h>
 #import <libimobiledevice/lockdown.h>
 
 NSString *const CMDeviceMangerDeviceAddedNotification = @"CMDeviceMangerDeviceAddedNotification";
 NSString *const CMDeviceMangerDeviceRemovedNotification = @"CMDeviceMangerDeviceRemovedNotification";
-NSString *const CMDeviceMangerNotificationDeviceUDIDKey = @"device_udid";
+NSString *const CMDeviceMangerNotificationDeviceKey = @"CMDevice";
 
 @interface CMDeviceManger ()
 
 @property (nonatomic, assign, getter = isSubscribed) BOOL subscribed;
+
+@property (nonatomic, strong) NSMutableArray *asyncDevices;
+
+- (void)handleEventCallback:(const idevice_event_t *)event;
 
 @end
 
@@ -42,7 +47,7 @@ NSString *const CMDeviceMangerNotificationDeviceUDIDKey = @"device_udid";
     return self;
 }
 
-- (NSArray *)readConnectedDevices
+- (NSArray *)readConnectedDeviceUDIDs
 {
     char **dev_list = NULL;
 	int i;
@@ -71,6 +76,7 @@ NSString *const CMDeviceMangerNotificationDeviceUDIDKey = @"device_udid";
 {
     if (!self.isSubscribed)
     {
+        [self.asyncDevices removeAllObjects];
         idevice_error_t errCode = idevice_event_subscribe(coreEventCallback, NULL);
         if (error < 0)
         {
@@ -94,6 +100,7 @@ NSString *const CMDeviceMangerNotificationDeviceUDIDKey = @"device_udid";
             NSLog(@"got error unsubscribing: %i", errCode);
             return NO;
         }
+        [self.asyncDevices removeAllObjects];
         self.subscribed = NO;
         return YES;
     }
@@ -102,20 +109,60 @@ NSString *const CMDeviceMangerNotificationDeviceUDIDKey = @"device_udid";
 
 void coreEventCallback (const idevice_event_t *event, void *user_data)
 {
+    [[CMDeviceManger sharedManager] handleEventCallback:event];
+}
+
+-(void)handleEventCallback:(const idevice_event_t *)event
+{
     NSString *udid = [[NSString alloc] initWithCString:event->udid encoding:NSUTF8StringEncoding];
+    CMDevice *device = [[CMDevice alloc] initWithUDID:udid];
     if (event->event == IDEVICE_DEVICE_ADD)
     {
+        [self deviceAdded:device];
         [[NSNotificationCenter defaultCenter] postNotificationName:CMDeviceMangerDeviceAddedNotification
                                                             object:nil
-                                                          userInfo:@{ CMDeviceMangerNotificationDeviceUDIDKey : udid }];
+                                                          userInfo:@{ CMDeviceMangerNotificationDeviceKey : device }];
     }
     else if (event->event == IDEVICE_DEVICE_REMOVE)
     {
+        [self deviceRemoved:device];
         [[NSNotificationCenter defaultCenter] postNotificationName:CMDeviceMangerDeviceRemovedNotification
                                                             object:nil
-                                                          userInfo:@{ CMDeviceMangerNotificationDeviceUDIDKey : udid }];
-
+                                                          userInfo:@{ CMDeviceMangerNotificationDeviceKey : device }];
+        
     }
+}
+
+#pragma mark - Keeping Track of Devices.
+
+- (void)deviceAdded:(CMDevice *)device
+{
+    if (![self.asyncDevices containsObject:device])
+    {
+        [self.asyncDevices addObject:device];
+    }
+}
+
+- (void)deviceRemoved:(CMDevice *)device
+{
+    if ([self.asyncDevices containsObject:device])
+    {
+        [self.asyncDevices removeObject:device];
+    }
+}
+
+-(NSArray *)devices
+{
+    return self.asyncDevices;
+}
+
+-(NSMutableArray *)asyncDevices
+{
+    if (!_asyncDevices)
+    {
+        _asyncDevices = [NSMutableArray array];
+    }
+    return _asyncDevices;
 }
 
 @end

@@ -18,7 +18,7 @@
 
 - (void)testConnectedDevicesAreReturned
 {
-    NSArray *connectedDevices = [[CMDeviceManger sharedManager] readConnectedDevices];
+    NSArray *connectedDevices = [[CMDeviceManger sharedManager] readConnectedDeviceUDIDs];
     
     NSLog(@"got connected devices: %@", connectedDevices);
     
