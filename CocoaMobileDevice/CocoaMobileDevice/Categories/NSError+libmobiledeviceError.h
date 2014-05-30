@@ -8,11 +8,14 @@
 
 #import <Foundation/Foundation.h>
 #import <libimobiledevice/libimobiledevice.h>
+#import <libimobiledevice/lockdown.h>
 
 FOUNDATION_EXPORT NSString *CMErrorDomain;
 
 @interface NSError (libmobiledeviceError)
 
-+ (NSError *)errorWithErrorCode:(idevice_error_t)errorCode;
++ (NSError *)errorWithDeviceErrorCode:(idevice_error_t)errorCode;
+
++ (NSError *)errorWithLockdownErrorCode:(lockdownd_error_t)errorCode;
 
 @end

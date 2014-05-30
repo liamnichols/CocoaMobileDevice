@@ -36,7 +36,9 @@ FOUNDATION_EXPORT NSString *CMDeviceDomainMobileiTunes;
 
 /// @name Connecting
 
-- (BOOL)connect;
+@property (nonatomic, readonly) BOOL connected;
+
+- (BOOL)connect:(NSError **)error;
 
 /// @name Device Name
 
@@ -46,9 +48,9 @@ FOUNDATION_EXPORT NSString *CMDeviceDomainMobileiTunes;
 
 /// @name Reading Values
 
-- (id)readDomain:(NSString *)domain;
+- (id)readDomain:(NSString *)domain error:(NSError **)error
 
-- (id)readDomain:(NSString *)domain key:(NSString *)key;
+- (id)readDomain:(NSString *)domain key:(NSString *)key error:(NSError **)error;
 
 /// @name Writing
 

@@ -8,12 +8,15 @@
 
 #import "CMDeviceManger.h"
 #import "CMDevice.h"
+#import "NSError+libmobiledeviceError.h"
 #import <libimobiledevice/libimobiledevice.h>
 #import <libimobiledevice/lockdown.h>
 
 NSString *const CMDeviceMangerDeviceAddedNotification = @"CMDeviceMangerDeviceAddedNotification";
 NSString *const CMDeviceMangerDeviceRemovedNotification = @"CMDeviceMangerDeviceRemovedNotification";
 NSString *const CMDeviceMangerNotificationDeviceKey = @"CMDevice";
+
+void coreEventCallback (const idevice_event_t *event, void *user_data);
 
 @interface CMDeviceManger ()
 
@@ -78,10 +81,10 @@ NSString *const CMDeviceMangerNotificationDeviceKey = @"CMDevice";
     {
         [self.asyncDevices removeAllObjects];
         idevice_error_t errCode = idevice_event_subscribe(coreEventCallback, NULL);
-        if (error < 0)
+        if (error != IDEVICE_E_SUCCESS)
         {
             self.subscribed = NO; //TODO: if subscribing fails, does that mean we're not subscribed?
-            NSLog(@"got error subscribing: %i", errCode);
+            *error = [NSError errorWithDeviceErrorCode:errCode];
             return NO;
         }
         self.subscribed = YES;
@@ -95,9 +98,9 @@ NSString *const CMDeviceMangerNotificationDeviceKey = @"CMDevice";
     if (self.isSubscribed)
     {
         idevice_error_t errCode = idevice_event_unsubscribe();
-        if (error < 0)
+        if (error != IDEVICE_E_SUCCESS)
         {
-            NSLog(@"got error unsubscribing: %i", errCode);
+            *error = [NSError errorWithDeviceErrorCode:errCode];
             return NO;
         }
         [self.asyncDevices removeAllObjects];

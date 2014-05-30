@@ -10,6 +10,7 @@
 #import "NSError+libmobiledeviceError.h"
 #import <libimobiledevice/libimobiledevice.h>
 #import <libimobiledevice/lockdown.h>
+#import <CocoaMobileDevice/CocoaMobileDevice.h>
 
 NSString *CMDeviceDomainDiskUsage = @"com.apple.disk_usage";
 NSString *CMDeviceDomainBattery = @"com.apple.mobile.battery";
@@ -48,11 +49,7 @@ NSString *CMDeviceDomainMobileiTunes = @"com.apple.mobile.iTunes";
 
 - (BOOL)isEqual:(id)object
 {
-    if ([object isKindOfClass:[CMDevice class]] && [self.UDID isEqualToString:[object UDID]])
-    {
-        return YES;
-    }
-    return NO;
+    return [object isKindOfClass:[CMDevice class]] && [self.UDID isEqualToString:[object UDID]];
 };
 
 - (id)initWithUDID:(NSString *)UDID
@@ -65,7 +62,7 @@ NSString *CMDeviceDomainMobileiTunes = @"com.apple.mobile.iTunes";
     return self;
 }
 
-- (BOOL)connect
+- (BOOL)connect:(NSError **)error
 {
     _connected = NO;
     client = NULL;
@@ -75,7 +72,7 @@ NSString *CMDeviceDomainMobileiTunes = @"com.apple.mobile.iTunes";
     
     if (ret != IDEVICE_E_SUCCESS)
     {
-        NSLog(@"trying to create a device with a UDID that is not connceted.");
+        *error = [NSError errorWithDeviceErrorCode:ret];
         return NO;
     }
     
@@ -83,7 +80,7 @@ NSString *CMDeviceDomainMobileiTunes = @"com.apple.mobile.iTunes";
     
     if (ret != IDEVICE_E_SUCCESS)
     {
-        NSLog(@"unable to complete handshake with phone.");
+        *error = [NSError errorWithDeviceErrorCode:ret];
         return NO;
     }
     
@@ -93,17 +90,14 @@ NSString *CMDeviceDomainMobileiTunes = @"com.apple.mobile.iTunes";
     return YES;
 }
 
--(id)read
+#pragma mark - reading
+
+-(id)readDomain:(NSString *)domain error:(NSError **)error
 {
-    return [self readDomain:nil];
+    return [self readDomain:domain key:nil error:error];
 }
 
--(id)readDomain:(NSString *)domain
-{
-    return [self readDomain:domain key:nil];
-}
-
-- (id)readDomain:(NSString *)domain key:(NSString *)key
+- (id)readDomain:(NSString *)domain key:(NSString *)key error:(NSError **)error
 {
     plist_t node;
     const char *cDomain = NULL;
@@ -116,8 +110,9 @@ NSString *CMDeviceDomainMobileiTunes = @"com.apple.mobile.iTunes";
     if (key) {
         cKey = [key cStringUsingEncoding:NSUTF8StringEncoding];
     }
-    
-    if(lockdownd_get_value(client, cDomain, cKey, &node) == LOCKDOWN_E_SUCCESS)
+
+    lockdownd_error_t rtn = lockdownd_get_value(client, cDomain, cKey, &node);
+    if(rtn == LOCKDOWN_E_SUCCESS)
     {
         if (node)
         {
@@ -128,25 +123,26 @@ NSString *CMDeviceDomainMobileiTunes = @"com.apple.mobile.iTunes";
             node = NULL;
         }
     }
-    
+
+    *error = [NSError errorWithLockdownErrorCode:rtn];
     return nil;
 }
 
 - (BOOL)writeValue:(id)value toDomain:(NSString *)domain forKey:(NSString *)key error:(NSError **)error
 {
     NSAssert(key, @"key must be present when writing a value.");
-    
+
     if (key)
     {
         NSError *plistError = nil;
         plist_t node = [CMPlistSerialization nodeWithPlistObject:value error:&plistError];
         const char *cKey = [key cStringUsingEncoding:NSUTF8StringEncoding];;
         const char *cDomain = NULL;
-        
+
         if (domain) {
             cDomain = [domain cStringUsingEncoding:NSUTF8StringEncoding];
         }
-        
+
         if (node)
         {
             lockdownd_error_t rtn = lockdownd_set_value(client, cDomain, cKey, node);
@@ -157,10 +153,10 @@ NSString *CMDeviceDomainMobileiTunes = @"com.apple.mobile.iTunes";
             else
             {
                 //error about code.
-                *error = [NSError errorWithErrorCode:rtn];
+                *error = [NSError errorWithLockdownErrorCode:rtn];
                 return NO;
             }
-            
+
             plist_free(node);
             node = NULL;
         }
@@ -169,9 +165,9 @@ NSString *CMDeviceDomainMobileiTunes = @"com.apple.mobile.iTunes";
             *error = plistError;
             return NO;
         }
-        
+
     }
-    
+
     //TODO: error about no key.
     return NO;
 }
@@ -180,8 +176,15 @@ NSString *CMDeviceDomainMobileiTunes = @"com.apple.mobile.iTunes";
 
 -(BOOL)loadDeviceName
 {
-    NSString *name = [self readDomain:nil key:@"DeviceName"];
+    NSError *error = nil;
+    NSString *name = [self readDomain:nil key:@"DeviceName" error:&error];
     self.deviceName = name;
+
+    if (error)
+    {
+        NSLog(@"failed to read device name due to error: %@", error);
+    }
+
     return name != nil;
 }
 
