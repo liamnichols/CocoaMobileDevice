@@ -149,8 +149,8 @@ NSString * CMDeviceReadDomainMobileiTunes                   = @"com.apple.mobile
         
         if (node)
         {
-            idevice_error_t rtn = lockdownd_set_value(client, cDomain, cKey, node);
-            if (rtn == IDEVICE_E_SUCCESS)
+            lockdownd_error_t rtn = lockdownd_set_value(client, cDomain, cKey, node);
+            if (rtn == LOCKDOWN_E_SUCCESS)
             {
                 return YES;
             }

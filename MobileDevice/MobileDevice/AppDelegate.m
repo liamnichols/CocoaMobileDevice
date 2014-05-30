@@ -11,8 +11,6 @@
 
 @interface AppDelegate ()
 
-@property (nonatomic, strong) NSMutableArray *devices;
-
 @property (nonatomic, strong) CMDevice *selectedDevice;
 
 @end
@@ -21,9 +19,7 @@
 
 - (void)applicationDidFinishLaunching:(NSNotification *)aNotification
 {
-    self.devices = [NSMutableArray array];
-    [self.deviceNameTextField resignFirstResponder];
-    
+    [self reloadDeviceList];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(deviceAddedNotifcation:) name:CMDeviceMangerDeviceAddedNotification object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(deviceRemovedNotifcation:) name:CMDeviceMangerDeviceRemovedNotification object:nil];
     [[CMDeviceManger sharedManager] subscribe:nil];
@@ -62,6 +58,11 @@
             }
             
         }];
+        
+        if (self.selectedDevice && ![[[CMDeviceManger sharedManager] devices] containsObject:self.selectedDevice])
+        {
+            self.selectedDevice = nil;
+        }
     });
 }
 

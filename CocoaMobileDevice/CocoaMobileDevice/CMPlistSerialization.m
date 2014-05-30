@@ -142,7 +142,7 @@
 {
     if ([object isKindOfClass:[NSString class]])
     {
-        const char *s = [object cStringUsingEncoding:NSASCIIStringEncoding];
+        const char *s = [object cStringUsingEncoding:NSUTF8StringEncoding]; //TODO: error if nil.
         plist_t node = plist_new_string(s);
         s = NULL;
         return node;

@@ -12,7 +12,7 @@ NSString *CMErrorDomain = @"CMErrorDomain";
 
 @implementation NSError (libmobiledeviceError)
 
-+ (NSError *)errorWithErrorCode:(idevice_error_t)errorCode
++ (NSError *)errorWithErrorCode:(idevice_error_t)errorCode //TODO: handle lockdown errors.
 {
     if (errorCode == IDEVICE_E_INVALID_ARG)
     {
