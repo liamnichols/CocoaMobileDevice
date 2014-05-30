@@ -562,8 +562,6 @@
 					"$(inherited)",
 					"$(PROJECT_DIR)/CocoaMobileDevice",
 					"$(PROJECT_DIR)",
-					/opt/local/lib,
-					/usr/local/Cellar/libplist/1.11/lib,
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = framework;
@@ -589,8 +587,6 @@
 					"$(inherited)",
 					"$(PROJECT_DIR)/CocoaMobileDevice",
 					"$(PROJECT_DIR)",
-					/opt/local/lib,
-					/usr/local/Cellar/libplist/1.11/lib,
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = framework;
