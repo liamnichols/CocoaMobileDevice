@@ -48,7 +48,7 @@ FOUNDATION_EXPORT NSString *CMDeviceDomainMobileiTunes;
 
 /// @name Reading Values
 
-- (id)readDomain:(NSString *)domain error:(NSError **)error
+- (id)readDomain:(NSString *)domain error:(NSError **)error;
 
 - (id)readDomain:(NSString *)domain key:(NSString *)key error:(NSError **)error;
 

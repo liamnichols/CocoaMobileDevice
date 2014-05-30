@@ -20,19 +20,19 @@
 - (void)applicationDidFinishLaunching:(NSNotification *)aNotification
 {
     [self reloadDeviceList];
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(deviceAddedNotifcation:) name:CMDeviceMangerDeviceAddedNotification object:nil];
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(deviceRemovedNotifcation:) name:CMDeviceMangerDeviceRemovedNotification object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(deviceAddedNotification:) name:CMDeviceMangerDeviceAddedNotification object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(deviceRemovedNotification:) name:CMDeviceMangerDeviceRemovedNotification object:nil];
     [[CMDeviceManger sharedManager] subscribe:nil];
     
     NSLog(@"subscription status: %@", [[CMDeviceManger sharedManager] isSubscribed] ? @"Subscribed" : @"Unsubscribed");
 }
 
-- (void)deviceAddedNotifcation:(NSNotification *)notification
+- (void)deviceAddedNotification:(NSNotification *)notification
 {
     [self reloadDeviceList];
 }
 
-- (void)deviceRemovedNotifcation:(NSNotification *)notification
+- (void)deviceRemovedNotification:(NSNotification *)notification
 {
     [self reloadDeviceList];
 }
@@ -48,7 +48,7 @@
             {
                 [self.deviceList addItemWithTitle:device.deviceName];
             }
-            else if ([device connect] && [device loadDeviceName] && device.deviceName)
+            else if (!device.connected && [device connect:nil] && [device loadDeviceName])
             {
                 [self.deviceList addItemWithTitle:device.deviceName];
             }
@@ -56,7 +56,6 @@
             {
                 [self.deviceList addItemWithTitle:device.UDID];
             }
-            
         }];
         
         if (self.selectedDevice && ![[[CMDeviceManger sharedManager] devices] containsObject:self.selectedDevice])
@@ -95,32 +94,48 @@
     self.capacityLabel.stringValue = @"";
     self.phoneNumberLabel.stringValue = @"";
     
-    if (selectedDevice && [selectedDevice connect])
+    if (selectedDevice)
     {
-        NSNumber *capacity = [selectedDevice readDomain:CMDeviceDomainDiskUsage key:@"TotalDataCapacity"];
+        NSError *error = nil;
+        if (!selectedDevice.connected) {
+            if (![selectedDevice connect:&error]) {
+                [[NSAlert alertWithError:error] runModal];
+                return;
+            }
+        }
+        NSNumber *capacity = [selectedDevice readDomain:CMDeviceDomainDiskUsage key:@"TotalDataCapacity" error:&error];
         
         self.deviceNameTextField.stringValue = selectedDevice.deviceName;
-        self.modelLabel.stringValue = [selectedDevice readDomain:nil key:@"ProductType"];
-        self.versionLabel.stringValue = [NSString stringWithFormat:@"iOS %@", [selectedDevice readDomain:nil key:@"ProductVersion"]];
+        self.modelLabel.stringValue = [selectedDevice readDomain:nil key:@"ProductType" error:&error];
+        self.versionLabel.stringValue = [NSString stringWithFormat:@"iOS %@", [selectedDevice readDomain:nil key:@"ProductVersion" error:&error]];
         self.identifierLabel.stringValue = selectedDevice.UDID;
-        self.serialNumberLabel.stringValue = [selectedDevice readDomain:nil key:@"SerialNumber"];
+        self.serialNumberLabel.stringValue = [selectedDevice readDomain:nil key:@"SerialNumber" error:&error];
         self.capacityLabel.stringValue = [NSByteCountFormatter stringFromByteCount:capacity.longLongValue countStyle:NSByteCountFormatterCountStyleFile];
-        self.phoneNumberLabel.stringValue = [selectedDevice readDomain:nil key:@"PhoneNumber"];
+        self.phoneNumberLabel.stringValue = [selectedDevice readDomain:nil key:@"PhoneNumber"  error:&error];
+        
+        if (error)
+        {
+            [[NSAlert alertWithError:error] runModal];
+        }
     }
 }
 
 - (IBAction)updateDeviceName:(id)sender
 {
-    if (self.deviceNameTextField.stringValue.length > 0 && self.selectedDevice && [self.selectedDevice connect])
+    if (self.deviceNameTextField.stringValue.length > 0 && self.selectedDevice)
     {
-        BOOL result = [self.selectedDevice writeValue:self.deviceNameTextField.stringValue toDomain:nil forKey:@"DeviceName" error:nil];
-        if (result)
+        NSError *error = nil;
+        if (!self.selectedDevice.connected)
         {
-            NSLog(@"device name updated.");
+            if (![self.selectedDevice connect:&error]) {
+                [[NSAlert alertWithError:error] runModal];
+                return;
+            }
         }
-        else
+        BOOL result = [self.selectedDevice writeValue:self.deviceNameTextField.stringValue toDomain:nil forKey:@"DeviceName" error:&error];
+        if (!result)
         {
-            NSLog(@"error updating device name.");
+            [[NSAlert alertWithError:error] runModal];
         }
     }
 }

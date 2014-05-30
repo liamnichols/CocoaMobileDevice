@@ -92,12 +92,12 @@ NSString *CMDeviceDomainMobileiTunes = @"com.apple.mobile.iTunes";
 
 #pragma mark - reading
 
--(id)readDomain:(NSString *)domain error:(NSError **)error
+-(id)readDomain:(NSString *)domain error:(NSError *__autoreleasing *)error
 {
     return [self readDomain:domain key:nil error:error];
 }
 
-- (id)readDomain:(NSString *)domain key:(NSString *)key error:(NSError **)error
+-(id)readDomain:(NSString *)domain key:(NSString *)key error:(NSError *__autoreleasing *)error
 {
     plist_t node;
     const char *cDomain = NULL;
