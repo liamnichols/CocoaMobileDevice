@@ -71,7 +71,6 @@ static void plist_dict_to_string(plist_t node)
 static void plist_node_to_string(plist_t node)
 {
 	char *s = NULL;
-	char *data = NULL;
 	double d;
 	uint8_t b;
 	uint64_t u = 0;
