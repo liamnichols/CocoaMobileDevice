@@ -176,7 +176,7 @@
 
         plist_t node = plist_new_data(data, len);
         
-        free(&data);
+        data = NULL;
         return node;
     }
     else if ([object isKindOfClass:[NSDate class]])
@@ -217,7 +217,6 @@
                 
                 plist_dict_set_item(node, k, item);
                 
-                free(&k);
                 k = NULL;
             }
         }

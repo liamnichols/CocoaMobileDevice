@@ -72,7 +72,9 @@ NSString *CMDeviceDomainMobileiTunes = @"com.apple.mobile.iTunes";
     
     if (ret != IDEVICE_E_SUCCESS)
     {
-        *error = [NSError errorWithDeviceErrorCode:ret];
+        if (error) {
+            *error = [NSError errorWithDeviceErrorCode:ret];
+        }
         return NO;
     }
     
@@ -80,7 +82,9 @@ NSString *CMDeviceDomainMobileiTunes = @"com.apple.mobile.iTunes";
     
     if (ret != IDEVICE_E_SUCCESS)
     {
-        *error = [NSError errorWithDeviceErrorCode:ret];
+        if (error) {
+            *error = [NSError errorWithDeviceErrorCode:ret];
+        }
         return NO;
     }
     
@@ -124,7 +128,9 @@ NSString *CMDeviceDomainMobileiTunes = @"com.apple.mobile.iTunes";
         }
     }
 
-    *error = [NSError errorWithLockdownErrorCode:rtn];
+    if (error) {
+        *error = [NSError errorWithLockdownErrorCode:rtn];
+    }
     return nil;
 }
 
