@@ -29,6 +29,9 @@ void coreEventCallback (const idevice_event_t *event, void *user_data);
 @end
 
 @implementation CMDeviceManger
+{
+    BOOL _isSingleton;
+}
 
 + (instancetype)sharedManager
 {
@@ -36,6 +39,7 @@ void coreEventCallback (const idevice_event_t *event, void *user_data);
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
         manager = [[CMDeviceManger alloc] init];
+        manager->_isSingleton = YES;
     });
     return manager;
 }
@@ -46,6 +50,7 @@ void coreEventCallback (const idevice_event_t *event, void *user_data);
     if (self)
     {
         self.subscribed = NO;
+        _isSingleton = NO;
     }
     return self;
 }
@@ -77,6 +82,12 @@ void coreEventCallback (const idevice_event_t *event, void *user_data);
 
 -(BOOL)subscribe:(NSError **)error
 {
+    if (!_isSingleton)
+    {
+        NSAssert(_isSingleton, @"The CMDeviceManager instances must only be used via the `sharedManager` class method.");
+        return NO;
+    }
+    
     if (!self.isSubscribed)
     {
         [self.asyncDevices removeAllObjects];
@@ -95,6 +106,12 @@ void coreEventCallback (const idevice_event_t *event, void *user_data);
 
 -(BOOL)unsubscribe:(NSError **)error
 {
+    if (!_isSingleton)
+    {
+        NSAssert(_isSingleton, @"The CMDeviceManager instances must only be used via the `sharedManager` class method.");
+        return NO;
+    }
+    
     if (self.isSubscribed)
     {
         idevice_error_t errCode = idevice_event_unsubscribe();
