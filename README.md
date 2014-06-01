@@ -3,7 +3,7 @@ CocoaMobileDevice
 
 A Cocoa based wrapper around the libimobiledevice library.
 
-Current release: 0.0.
+Current release: 0.0.1
 
 
 **Features:**
