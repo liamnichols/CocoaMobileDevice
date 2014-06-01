@@ -12,24 +12,22 @@
 
 @property (assign) IBOutlet NSWindow *window;
 
-@property (nonatomic, weak) IBOutlet NSPopUpButton *deviceList;
+@property (nonatomic, strong) IBOutlet NSPopUpButton *deviceList;
+
+@property (nonatomic, strong) IBOutlet NSTextView *loggerTextView;
 
 - (IBAction)deviceListValueChanged:(id)sender;
 
-- (IBAction)updateDeviceName:(id)sender;
+//read and write
 
-@property (nonatomic, weak) IBOutlet NSTextField *deviceNameTextField;
+@property (nonatomic, strong) IBOutlet NSComboBox *domainPicker;
 
-@property (nonatomic, weak) IBOutlet NSTextField *modelLabel;
+@property (nonatomic, strong) IBOutlet NSTextField *keyTextField;
 
-@property (nonatomic, weak) IBOutlet NSTextField *versionLabel;
+@property (nonatomic, strong) IBOutlet NSTextField *valueTextField;
 
-@property (nonatomic, weak) IBOutlet NSTextField *identifierLabel;
+- (IBAction)didPressReadButton:(id)sender;
 
-@property (nonatomic, weak) IBOutlet NSTextField *serialNumberLabel;
-
-@property (nonatomic, weak) IBOutlet NSTextField *capacityLabel;
-
-@property (nonatomic, weak) IBOutlet NSTextField *phoneNumberLabel;
+- (IBAction)didPressWriteButton:(id)sender;
 
 @end

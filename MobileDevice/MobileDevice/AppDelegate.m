@@ -9,7 +9,7 @@
 #import "AppDelegate.h"
 #import <CocoaMobileDevice/CocoaMobileDevice.h>
 
-@interface AppDelegate ()
+@interface AppDelegate () <NSAlertDelegate>
 
 @property (nonatomic, strong) CMDevice *selectedDevice;
 
@@ -19,21 +19,35 @@
 
 - (void)applicationDidFinishLaunching:(NSNotification *)aNotification
 {
+    //configure logger
+    self.loggerTextView.font = [NSFont fontWithName:@"Courier New" size:12.0];
+    
+    //configure combo picker
+    [self.domainPicker addItemWithObjectValue:@""];
+    [self.domainPicker addItemsWithObjectValues:[CMDevice knownDomains]];
+    [self.domainPicker setNumberOfVisibleItems:self.domainPicker.objectValues.count];
+    
     [self reloadDeviceList];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(deviceAddedNotification:) name:CMDeviceMangerDeviceAddedNotification object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(deviceRemovedNotification:) name:CMDeviceMangerDeviceRemovedNotification object:nil];
     [[CMDeviceManger sharedManager] subscribe:nil];
     
-    NSLog(@"subscription status: %@", [[CMDeviceManger sharedManager] isSubscribed] ? @"Subscribed" : @"Unsubscribed");
+    LogToUI(@"CMDeviceManger subscibed for connection notifications: %@", [[CMDeviceManger sharedManager] isSubscribed] ? @"YES" : @"NO");
 }
 
 - (void)deviceAddedNotification:(NSNotification *)notification
 {
+    CMDevice *device = [notification.userInfo objectForKey:CMDeviceMangerNotificationDeviceKey];
+    LogToUI(@"Device added: %@", device);
+    
     [self reloadDeviceList];
 }
 
 - (void)deviceRemovedNotification:(NSNotification *)notification
 {
+    CMDevice *device = [notification.userInfo objectForKey:CMDeviceMangerNotificationDeviceKey];
+    LogToUI(@"Device removed: %@", device);
+    
     [self reloadDeviceList];
 }
 
@@ -86,13 +100,6 @@
 {
     _selectedDevice = selectedDevice;
     
-    self.deviceNameTextField.stringValue = @"";
-    self.modelLabel.stringValue = @"";
-    self.versionLabel.stringValue = @"";
-    self.identifierLabel.stringValue = @"";
-    self.serialNumberLabel.stringValue = @"";
-    self.capacityLabel.stringValue = @"";
-    self.phoneNumberLabel.stringValue = @"";
     
     if (selectedDevice)
     {
@@ -103,41 +110,173 @@
                 return;
             }
         }
-        NSNumber *capacity = [selectedDevice readDomain:CMDeviceDomainDiskUsage key:@"TotalDataCapacity" error:&error];
         
-        self.deviceNameTextField.stringValue = selectedDevice.deviceName;
-        self.modelLabel.stringValue = [selectedDevice readDomain:nil key:@"ProductType" error:&error];
-        self.versionLabel.stringValue = [NSString stringWithFormat:@"iOS %@", [selectedDevice readDomain:nil key:@"ProductVersion" error:&error]];
-        self.identifierLabel.stringValue = selectedDevice.UDID;
-        self.serialNumberLabel.stringValue = [selectedDevice readDomain:nil key:@"SerialNumber" error:&error];
-        self.capacityLabel.stringValue = [NSByteCountFormatter stringFromByteCount:capacity.longLongValue countStyle:NSByteCountFormatterCountStyleFile];
-        self.phoneNumberLabel.stringValue = [selectedDevice readDomain:nil key:@"PhoneNumber"  error:&error];
-        
-        if (error)
-        {
-            [[NSAlert alertWithError:error] runModal];
-        }
     }
 }
 
-- (IBAction)updateDeviceName:(id)sender
+#pragma mark - Reading
+
+-(void)didPressReadButton:(id)sender
 {
-    if (self.deviceNameTextField.stringValue.length > 0 && self.selectedDevice)
+    NSString *domain = [self.domainPicker stringValue];
+    NSString *key = [self.keyTextField stringValue];
+    
+    if (key.length == 0)
+        key = nil;
+    
+    if (domain.length == 0)
+        domain = nil;
+    
+    if (!self.selectedDevice)
     {
-        NSError *error = nil;
-        if (!self.selectedDevice.connected)
+        [[NSAlert alertWithMessageText:@"No Device Selected" defaultButton:@"Ok" alternateButton:nil otherButton:nil informativeTextWithFormat:@"Please select a device to read from before trying to read."] runModal];
+        return;
+    }
+    
+    if (![CMDevice isDomainKnown:domain])
+    {
+        NSAlert *alert = [NSAlert alertWithMessageText:@"Warning" defaultButton:@"Yes" alternateButton:@"No" otherButton:nil informativeTextWithFormat:@"The domain '%@' is not a known domain. Are you sure you want to send this query?", domain];
+        
+        if ([alert runModal] != 1)
+            return;
+    }
+    
+    [self readAndPrintDomain:domain key:key];
+}
+
+- (void)readAndPrintDomain:(NSString *)domain key:(NSString *)key
+{
+    [self connectIfNeeded];
+
+    LogToUI(@"Reading from device. domain: %@ key: %@", domain, key);
+ 
+    NSError *error = nil;
+    
+    id response = [self.selectedDevice readDomain:domain key:key error:&error];
+    
+    if (!error)
+    {
+        LogToUI(@"Response: %@", response);
+    }
+    else
+    {
+        LogToUI(@"Error Reading: %@", error);
+    }
+}
+
+#pragma mark - Write
+
+-(void)didPressWriteButton:(id)sender
+{
+    NSString *domain = [self.domainPicker stringValue];
+    NSString *key = [self.keyTextField stringValue];
+    NSString *value = [self.valueTextField stringValue];
+    
+    if (domain.length == 0)
+        domain = nil;
+    
+    if (!self.selectedDevice)
+    {
+        [[NSAlert alertWithMessageText:@"No Device Selected" defaultButton:@"Ok" alternateButton:nil otherButton:nil informativeTextWithFormat:@"Please select a device to read from before trying to read."] runModal];
+        return;
+    }
+    
+    if (![CMDevice isDomainKnown:domain])
+    {
+        NSAlert *alert = [NSAlert alertWithMessageText:@"Warning" defaultButton:@"Yes" alternateButton:@"No" otherButton:nil informativeTextWithFormat:@"The domain '%@' is not a known domain. Are you sure you want to send this query?", domain];
+        
+        if ([alert runModal] != 1)
+            return;
+    }
+    
+    if (key.length <= 0)
+    {
+        [[NSAlert alertWithMessageText:@"No Key Provided" defaultButton:@"Ok" alternateButton:nil otherButton:nil informativeTextWithFormat:@"Please specify a key to write to before trying to write."] runModal];
+        return;
+    }
+    
+    if (value.length <= 0)
+    {
+        [[NSAlert alertWithMessageText:@"No Value Provided" defaultButton:@"Ok" alternateButton:nil otherButton:nil informativeTextWithFormat:@"Please specify a value to write before trying to write."] runModal];
+        return;
+    }
+    
+    [self writeAndPrintDomain:domain key:key value:value];
+}
+
+- (void)writeAndPrintDomain:(NSString *)domain key:(NSString *)key value:(id)value
+{
+    [self connectIfNeeded];
+    
+    LogToUI(@"Writing to device. domain: %@ key: %@ value: %@", domain, key, value);
+    
+    NSError *error = nil;
+    
+    BOOL success = [self.selectedDevice writeValue:value toDomain:domain forKey:key error:&error];
+    
+    if (success)
+    {
+        LogToUI(@"Value successfully written to device");
+    }
+    else
+    {
+        LogToUI(@"Error Writing: %@", error);
+    }
+}
+
+#pragma mark - Both
+
+- (void)connectIfNeeded
+{
+    NSError *error = nil;
+    if (!self.selectedDevice.connected)
+    {
+        if ([self.selectedDevice connect:&error])
         {
-            if (![self.selectedDevice connect:&error]) {
-                [[NSAlert alertWithError:error] runModal];
-                return;
-            }
+            LogToUI(@"successfully connected to device: %@", self.selectedDevice);
         }
-        BOOL result = [self.selectedDevice writeValue:self.deviceNameTextField.stringValue toDomain:nil forKey:@"DeviceName" error:&error];
-        if (!result)
+        else
         {
-            [[NSAlert alertWithError:error] runModal];
+            LogToUI(@"error connecting to device: %@ error: %@", self.selectedDevice, error);
+            return;
         }
     }
+    else
+    {
+        LogToUI(@"already connected to device for read: %@", self.selectedDevice);
+    }
+}
+
+#pragma mark - Logging
+
+void LogToUI(NSString *format, ...)
+{
+    AppDelegate *delegate = (AppDelegate*)[[NSApplication sharedApplication] delegate];
+    
+    va_list args;
+	va_start (args, format);
+    NSString *string = [[NSString alloc] initWithFormat:format arguments:args];
+    
+    static NSDateFormatter *dateFormatter = nil;
+    static dispatch_once_t onceToken;
+    dispatch_once(&onceToken, ^{
+        dateFormatter = [[NSDateFormatter alloc] init];
+        dateFormatter.dateFormat = @"yyyy-MM-dd hh:mm:ss.SSS";
+    });
+    
+    NSLog(@"%@", string);
+    
+    string = [[dateFormatter stringFromDate:[NSDate date]] stringByAppendingFormat:@" %@", string];
+    
+    // Smart Scrolling
+    BOOL scroll = (NSMaxY(delegate.loggerTextView.visibleRect) == NSMaxY(delegate.loggerTextView.bounds));
+    
+    dispatch_async(dispatch_get_main_queue(), ^{
+        delegate.loggerTextView.string = [delegate.loggerTextView.string stringByAppendingFormat:@"%@\n", string];
+        
+        if (scroll) // Scroll to end of the textview contents
+            [delegate.loggerTextView scrollRangeToVisible: NSMakeRange(delegate.loggerTextView.string.length, 0)];
+    });
 }
 
 @end

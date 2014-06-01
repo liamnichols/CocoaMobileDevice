@@ -194,4 +194,52 @@ NSString *CMDeviceDomainMobileiTunes = @"com.apple.mobile.iTunes";
     return name != nil;
 }
 
+#pragma mark - Debugging
+
+- (NSString *)description
+{
+    return [NSString stringWithFormat:@"<%@ %p UDID: %@; connected: %@; deviceName: %@>",self.className, self, self.UDID, self.connected ? @"YES" : @"NO", self.deviceName];
+}
+
+#pragma mark - Misc
+
++ (NSArray *)knownDomains
+{
+    static NSArray *domains = nil;
+    static dispatch_once_t onceToken;
+    dispatch_once(&onceToken, ^{
+        domains = @[
+            CMDeviceDomainDiskUsage,
+            CMDeviceDomainBattery,
+            CMDeviceDomainDeveloper,
+            CMDeviceDomainInternational,
+            CMDeviceDomainDataSync,
+            CMDeviceDomainTetheredSync,
+            CMDeviceDomainMobileApplicationUsage,
+            CMDeviceDomainBackup,
+            CMDeviceDomainNikita,
+            CMDeviceDomainRestriction,
+            CMDeviceDomainUserPreferences,
+            CMDeviceDomainSyncDataClass,
+            CMDeviceDomainSoftwareBehavior,
+            CMDeviceDomainMusicLibraryProcessComands,
+            CMDeviceDomainAccessories,
+            CMDeviceDomainFairplay,
+            CMDeviceDomainiTunes,
+            CMDeviceDomainMobileiTunesStore,
+            CMDeviceDomainMobileiTunes
+        ];
+    });
+    return domains;
+}
+
++ (BOOL)isDomainKnown:(NSString *)domain
+{
+    if (domain && ![[self knownDomains] containsObject:domain])
+    {
+        return NO;
+    }
+    return YES;
+}
+
 @end
