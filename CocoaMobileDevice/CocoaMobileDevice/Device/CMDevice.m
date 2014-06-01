@@ -10,6 +10,7 @@
 #import "NSError+libmobiledeviceError.h"
 #import <libimobiledevice/libimobiledevice.h>
 #import <libimobiledevice/lockdown.h>
+#import <libimobiledevice/screenshotr.h>
 #import <CocoaMobileDevice/CocoaMobileDevice.h>
 
 //Note: if modifying this list, make sure you update the `knownDomains` array.
@@ -56,6 +57,7 @@ NSString *CMDeviceDomainMobileiTunes = @"com.apple.mobile.iTunes";
 @implementation CMDevice
 {
     lockdownd_client_t client;
+    idevice_t phone;
 }
 
 - (BOOL)isEqual:(id)object
@@ -77,7 +79,7 @@ NSString *CMDeviceDomainMobileiTunes = @"com.apple.mobile.iTunes";
 {
     _connected = NO;
     client = NULL;
-    idevice_t phone = NULL;
+    phone = NULL;
     
     idevice_error_t ret = idevice_new(&phone, [self.UDID cStringUsingEncoding:NSUTF8StringEncoding]);
     
@@ -99,8 +101,6 @@ NSString *CMDeviceDomainMobileiTunes = @"com.apple.mobile.iTunes";
         return NO;
     }
     
-    idevice_free(phone);
-    
     _connected = YES;
     return YES;
 }
@@ -112,6 +112,13 @@ NSString *CMDeviceDomainMobileiTunes = @"com.apple.mobile.iTunes";
         lockdownd_client_free(client);
         client = NULL;
     }
+    
+    if (phone)
+    {
+        idevice_free(phone);
+        phone = NULL;
+    }
+    
     _connected = NO;
     return YES;
 }
@@ -221,6 +228,61 @@ NSString *CMDeviceDomainMobileiTunes = @"com.apple.mobile.iTunes";
 - (NSString *)description
 {
     return [NSString stringWithFormat:@"<%@ %p UDID: %@; connected: %@; deviceName: %@>",self.className, self, self.UDID, self.connected ? @"YES" : @"NO", self.deviceName];
+}
+
+#pragma mark - Screenshot
+
+-(NSData *)getScreenshot:(NSError *__autoreleasing *)error
+{
+    NSData *data = nil;
+    
+    lockdownd_service_descriptor_t service = NULL;
+    screenshotr_client_t shotr = NULL;
+    
+    lockdownd_error_t rtn = lockdownd_start_service(client, "com.apple.mobile.screenshotr", &service);
+    if (rtn == LOCKDOWN_E_SUCCESS)
+    {
+        if (service && service->port > 0)
+        {
+            screenshotr_error_t err = screenshotr_client_new(phone, service, &shotr);
+            if (err == SCREENSHOTR_E_SUCCESS)
+            {
+                char *imgdata = NULL;
+                uint64_t imgsize = 0;
+                err = screenshotr_take_screenshot(shotr, &imgdata, &imgsize);
+
+                if (err == SCREENSHOTR_E_SUCCESS)
+                {
+                    data = [NSData dataWithBytes:imgdata length:imgsize];
+                }
+                else
+                {
+                    //TODO: add support for SCREENSHOTR_E errors
+                    *error = nil;
+                }
+            }
+            else
+            {
+                //TODO: add support for SCREENSHOTR_E errors
+                *error = nil;
+            }
+            
+            if (shotr)
+                screenshotr_client_free(shotr);
+            lockdownd_service_descriptor_free(service);
+        }
+        else
+        {
+            //TOOD: Return screnshotr error here about unable to start service.
+            *error = nil;
+        }
+    }
+    else
+    {
+        *error = [NSError errorWithLockdownErrorCode:rtn];
+    }
+    
+    return data;
 }
 
 #pragma mark - Misc

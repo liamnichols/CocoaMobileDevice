@@ -68,6 +68,10 @@ FOUNDATION_EXPORT NSString *CMDeviceDomainMobileiTunes;
 
 - (BOOL)writeValue:(id)value toDomain:(NSString *)domain forKey:(NSString *)key error:(NSError **)error;
 
+/// @name Screenshot
+
+- (NSData *)getScreenshot:(NSError **)error;
+
 /// @name Misc
 
 + (NSArray *)knownDomains;
