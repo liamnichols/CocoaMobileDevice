@@ -7,10 +7,7 @@
 //
 
 #import "NSError+libmobiledeviceError.h"
-
-NSString *CMDeviceErrorDomain = @"CMDeviceErrorDomain";
-NSString *CMLockdowndErrorDomain = @"CMLockdowndErrorDomain";
-NSString *CMScreenshotrErrorDomain = @"CMScreenshotrErrorDomain";
+#import "CMConstants.h"
 
 @implementation NSError (libmobiledeviceError)
 

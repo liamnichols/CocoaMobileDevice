@@ -8,4 +8,4 @@
 
 #import <CocoaMobileDevice/CMDeviceManger.h>
 #import <CocoaMobileDevice/CMDevice.h>
-
+#import <CocoaMobileDevice/CMConstants.h>

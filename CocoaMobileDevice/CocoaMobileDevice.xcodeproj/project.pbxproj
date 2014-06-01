@@ -47,6 +47,8 @@
 		53942C2A1937E1EB006B5F2C /* String.h in Headers */ = {isa = PBXBuildFile; fileRef = 53942C0A1937E1EA006B5F2C /* String.h */; };
 		53942C2B1937E1EB006B5F2C /* Structure.h in Headers */ = {isa = PBXBuildFile; fileRef = 53942C0B1937E1EA006B5F2C /* Structure.h */; };
 		53942C2C1937E1EB006B5F2C /* Uid.h in Headers */ = {isa = PBXBuildFile; fileRef = 53942C0C1937E1EA006B5F2C /* Uid.h */; };
+		53B4F56D193BA3F400DC3466 /* CMConstants.h in Headers */ = {isa = PBXBuildFile; fileRef = 53B4F56B193BA3F400DC3466 /* CMConstants.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		53B4F56E193BA3F400DC3466 /* CMConstants.m in Sources */ = {isa = PBXBuildFile; fileRef = 53B4F56C193BA3F400DC3466 /* CMConstants.m */; };
 		53DB7C9D193BA27F00502C8A /* libimobiledevice.4.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 53DB7C9A193BA27F00502C8A /* libimobiledevice.4.dylib */; };
 		53DB7C9E193BA27F00502C8A /* libplist.2.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 53DB7C9B193BA27F00502C8A /* libplist.2.dylib */; };
 		53DB7CA0193BA28800502C8A /* libimobiledevice.4.dylib in CopyFiles */ = {isa = PBXBuildFile; fileRef = 53DB7C9A193BA27F00502C8A /* libimobiledevice.4.dylib */; };
@@ -134,6 +136,8 @@
 		53942C0A1937E1EA006B5F2C /* String.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = String.h; sourceTree = "<group>"; };
 		53942C0B1937E1EA006B5F2C /* Structure.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Structure.h; sourceTree = "<group>"; };
 		53942C0C1937E1EA006B5F2C /* Uid.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Uid.h; sourceTree = "<group>"; };
+		53B4F56B193BA3F400DC3466 /* CMConstants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CMConstants.h; sourceTree = "<group>"; };
+		53B4F56C193BA3F400DC3466 /* CMConstants.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CMConstants.m; sourceTree = "<group>"; };
 		53DB7C9A193BA27F00502C8A /* libimobiledevice.4.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libimobiledevice.4.dylib; path = Frameworks/libimobiledevice.4.dylib; sourceTree = "<group>"; };
 		53DB7C9B193BA27F00502C8A /* libplist.2.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libplist.2.dylib; path = Frameworks/libplist.2.dylib; sourceTree = "<group>"; };
 		53DB7C9C193BA27F00502C8A /* libusbmuxd.1.0.8.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libusbmuxd.1.0.8.dylib; path = Frameworks/libusbmuxd.1.0.8.dylib; sourceTree = "<group>"; };
@@ -218,6 +222,8 @@
 			isa = PBXGroup;
 			children = (
 				53942B371937DF45006B5F2C /* CocoaMobileDevice.h */,
+				53B4F56B193BA3F400DC3466 /* CMConstants.h */,
+				53B4F56C193BA3F400DC3466 /* CMConstants.m */,
 				53942B311937DF45006B5F2C /* Supporting Files */,
 				DF275794DF839C4A626630F0 /* Serializers */,
 				DF2754376C50BFF6DDDF85BA /* Categories */,
@@ -348,6 +354,7 @@
 				53942C0D1937E1EA006B5F2C /* afc.h in Headers */,
 				53942C241937E1EB006B5F2C /* Integer.h in Headers */,
 				53942C1C1937E1EB006B5F2C /* sbservices.h in Headers */,
+				53B4F56D193BA3F400DC3466 /* CMConstants.h in Headers */,
 				53942C0E1937E1EA006B5F2C /* diagnostics_relay.h in Headers */,
 				53942C201937E1EB006B5F2C /* Boolean.h in Headers */,
 				53942C1A1937E1EB006B5F2C /* notification_proxy.h in Headers */,
@@ -482,6 +489,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				DF27522146FC2881D7F2725D /* CMPlistSerialization.m in Sources */,
+				53B4F56E193BA3F400DC3466 /* CMConstants.m in Sources */,
 				DF275CDEE0E19141086A3808 /* NSError+libmobiledeviceError.m in Sources */,
 				DF2754ACED1C0C1A0493A961 /* CMDeviceManger.m in Sources */,
 				DF27588747A33C3F01CC2744 /* CMDevice.m in Sources */,
