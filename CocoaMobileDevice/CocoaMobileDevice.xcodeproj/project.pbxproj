@@ -15,38 +15,6 @@
 		53942B4A1937DF45006B5F2C /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 53942B481937DF45006B5F2C /* InfoPlist.strings */; };
 		53942B4C1937DF45006B5F2C /* CocoaMobileDeviceTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 53942B4B1937DF45006B5F2C /* CocoaMobileDeviceTests.m */; };
 		53942BE71937E19A006B5F2C /* CocoaMobileDevice.h in Headers */ = {isa = PBXBuildFile; fileRef = 53942B371937DF45006B5F2C /* CocoaMobileDevice.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		53942C0D1937E1EA006B5F2C /* afc.h in Headers */ = {isa = PBXBuildFile; fileRef = 53942BEC1937E1EA006B5F2C /* afc.h */; };
-		53942C0E1937E1EA006B5F2C /* diagnostics_relay.h in Headers */ = {isa = PBXBuildFile; fileRef = 53942BED1937E1EA006B5F2C /* diagnostics_relay.h */; };
-		53942C0F1937E1EA006B5F2C /* file_relay.h in Headers */ = {isa = PBXBuildFile; fileRef = 53942BEE1937E1EA006B5F2C /* file_relay.h */; };
-		53942C101937E1EA006B5F2C /* heartbeat.h in Headers */ = {isa = PBXBuildFile; fileRef = 53942BEF1937E1EA006B5F2C /* heartbeat.h */; };
-		53942C111937E1EA006B5F2C /* house_arrest.h in Headers */ = {isa = PBXBuildFile; fileRef = 53942BF01937E1EA006B5F2C /* house_arrest.h */; };
-		53942C121937E1EA006B5F2C /* installation_proxy.h in Headers */ = {isa = PBXBuildFile; fileRef = 53942BF11937E1EA006B5F2C /* installation_proxy.h */; };
-		53942C131937E1EA006B5F2C /* libimobiledevice.h in Headers */ = {isa = PBXBuildFile; fileRef = 53942BF21937E1EA006B5F2C /* libimobiledevice.h */; };
-		53942C141937E1EA006B5F2C /* lockdown.h in Headers */ = {isa = PBXBuildFile; fileRef = 53942BF31937E1EA006B5F2C /* lockdown.h */; };
-		53942C151937E1EA006B5F2C /* misagent.h in Headers */ = {isa = PBXBuildFile; fileRef = 53942BF41937E1EA006B5F2C /* misagent.h */; };
-		53942C161937E1EA006B5F2C /* mobile_image_mounter.h in Headers */ = {isa = PBXBuildFile; fileRef = 53942BF51937E1EA006B5F2C /* mobile_image_mounter.h */; };
-		53942C171937E1EA006B5F2C /* mobilebackup.h in Headers */ = {isa = PBXBuildFile; fileRef = 53942BF61937E1EA006B5F2C /* mobilebackup.h */; };
-		53942C181937E1EA006B5F2C /* mobilebackup2.h in Headers */ = {isa = PBXBuildFile; fileRef = 53942BF71937E1EA006B5F2C /* mobilebackup2.h */; };
-		53942C191937E1EB006B5F2C /* mobilesync.h in Headers */ = {isa = PBXBuildFile; fileRef = 53942BF81937E1EA006B5F2C /* mobilesync.h */; };
-		53942C1A1937E1EB006B5F2C /* notification_proxy.h in Headers */ = {isa = PBXBuildFile; fileRef = 53942BF91937E1EA006B5F2C /* notification_proxy.h */; };
-		53942C1B1937E1EB006B5F2C /* restore.h in Headers */ = {isa = PBXBuildFile; fileRef = 53942BFA1937E1EA006B5F2C /* restore.h */; };
-		53942C1C1937E1EB006B5F2C /* sbservices.h in Headers */ = {isa = PBXBuildFile; fileRef = 53942BFB1937E1EA006B5F2C /* sbservices.h */; };
-		53942C1D1937E1EB006B5F2C /* screenshotr.h in Headers */ = {isa = PBXBuildFile; fileRef = 53942BFC1937E1EA006B5F2C /* screenshotr.h */; };
-		53942C1E1937E1EB006B5F2C /* webinspector.h in Headers */ = {isa = PBXBuildFile; fileRef = 53942BFD1937E1EA006B5F2C /* webinspector.h */; };
-		53942C1F1937E1EB006B5F2C /* Array.h in Headers */ = {isa = PBXBuildFile; fileRef = 53942BFF1937E1EA006B5F2C /* Array.h */; };
-		53942C201937E1EB006B5F2C /* Boolean.h in Headers */ = {isa = PBXBuildFile; fileRef = 53942C001937E1EA006B5F2C /* Boolean.h */; };
-		53942C211937E1EB006B5F2C /* Data.h in Headers */ = {isa = PBXBuildFile; fileRef = 53942C011937E1EA006B5F2C /* Data.h */; };
-		53942C221937E1EB006B5F2C /* Date.h in Headers */ = {isa = PBXBuildFile; fileRef = 53942C021937E1EA006B5F2C /* Date.h */; };
-		53942C231937E1EB006B5F2C /* Dictionary.h in Headers */ = {isa = PBXBuildFile; fileRef = 53942C031937E1EA006B5F2C /* Dictionary.h */; };
-		53942C241937E1EB006B5F2C /* Integer.h in Headers */ = {isa = PBXBuildFile; fileRef = 53942C041937E1EA006B5F2C /* Integer.h */; };
-		53942C251937E1EB006B5F2C /* Key.h in Headers */ = {isa = PBXBuildFile; fileRef = 53942C051937E1EA006B5F2C /* Key.h */; };
-		53942C261937E1EB006B5F2C /* Node.h in Headers */ = {isa = PBXBuildFile; fileRef = 53942C061937E1EA006B5F2C /* Node.h */; };
-		53942C271937E1EB006B5F2C /* plist++.h in Headers */ = {isa = PBXBuildFile; fileRef = 53942C071937E1EA006B5F2C /* plist++.h */; };
-		53942C281937E1EB006B5F2C /* plist.h in Headers */ = {isa = PBXBuildFile; fileRef = 53942C081937E1EA006B5F2C /* plist.h */; };
-		53942C291937E1EB006B5F2C /* Real.h in Headers */ = {isa = PBXBuildFile; fileRef = 53942C091937E1EA006B5F2C /* Real.h */; };
-		53942C2A1937E1EB006B5F2C /* String.h in Headers */ = {isa = PBXBuildFile; fileRef = 53942C0A1937E1EA006B5F2C /* String.h */; };
-		53942C2B1937E1EB006B5F2C /* Structure.h in Headers */ = {isa = PBXBuildFile; fileRef = 53942C0B1937E1EA006B5F2C /* Structure.h */; };
-		53942C2C1937E1EB006B5F2C /* Uid.h in Headers */ = {isa = PBXBuildFile; fileRef = 53942C0C1937E1EA006B5F2C /* Uid.h */; };
 		53B4F56D193BA3F400DC3466 /* CMConstants.h in Headers */ = {isa = PBXBuildFile; fileRef = 53B4F56B193BA3F400DC3466 /* CMConstants.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		53B4F56E193BA3F400DC3466 /* CMConstants.m in Sources */ = {isa = PBXBuildFile; fileRef = 53B4F56C193BA3F400DC3466 /* CMConstants.m */; };
 		53DB7C9D193BA27F00502C8A /* libimobiledevice.4.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 53DB7C9A193BA27F00502C8A /* libimobiledevice.4.dylib */; };
@@ -54,12 +22,12 @@
 		53DB7CA0193BA28800502C8A /* libimobiledevice.4.dylib in CopyFiles */ = {isa = PBXBuildFile; fileRef = 53DB7C9A193BA27F00502C8A /* libimobiledevice.4.dylib */; };
 		53DB7CA1193BA28800502C8A /* libplist.2.dylib in CopyFiles */ = {isa = PBXBuildFile; fileRef = 53DB7C9B193BA27F00502C8A /* libplist.2.dylib */; };
 		53DB7CA2193BA28800502C8A /* libusbmuxd.1.0.8.dylib in CopyFiles */ = {isa = PBXBuildFile; fileRef = 53DB7C9C193BA27F00502C8A /* libusbmuxd.1.0.8.dylib */; };
-		DF27501B6E639E2B3265B311 /* NSError+libmobiledeviceError.h in Headers */ = {isa = PBXBuildFile; fileRef = DF275A3C18A7E9FA1D89112D /* NSError+libmobiledeviceError.h */; };
+		DF27501B6E639E2B3265B311 /* NSError+libmobiledeviceError.h in Headers */ = {isa = PBXBuildFile; fileRef = DF275A3C18A7E9FA1D89112D /* NSError+libmobiledeviceError.h */; settings = {ATTRIBUTES = (Private, ); }; };
 		DF27522146FC2881D7F2725D /* CMPlistSerialization.m in Sources */ = {isa = PBXBuildFile; fileRef = DF2752656BA49577EC6FC44C /* CMPlistSerialization.m */; };
 		DF2754ACED1C0C1A0493A961 /* CMDeviceManger.m in Sources */ = {isa = PBXBuildFile; fileRef = DF2754C6EC78BEE86C760BA1 /* CMDeviceManger.m */; };
 		DF27588747A33C3F01CC2744 /* CMDevice.m in Sources */ = {isa = PBXBuildFile; fileRef = DF2754D4DFDCDF1AEF36DEC5 /* CMDevice.m */; };
 		DF275A8E0F8F9C3E03C89595 /* CMDevice.h in Headers */ = {isa = PBXBuildFile; fileRef = DF275B181C90BAAA31DC4B4A /* CMDevice.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		DF275AC93D8125D872A8FC7D /* CMPlistSerialization.h in Headers */ = {isa = PBXBuildFile; fileRef = DF275E9DBDE905FAD2E7D11C /* CMPlistSerialization.h */; };
+		DF275AC93D8125D872A8FC7D /* CMPlistSerialization.h in Headers */ = {isa = PBXBuildFile; fileRef = DF275E9DBDE905FAD2E7D11C /* CMPlistSerialization.h */; settings = {ATTRIBUTES = (Private, ); }; };
 		DF275CDEE0E19141086A3808 /* NSError+libmobiledeviceError.m in Sources */ = {isa = PBXBuildFile; fileRef = DF2754792EDECC5482F1CD2C /* NSError+libmobiledeviceError.m */; };
 		DF275EEB4974F3B5A70902C5 /* CMDeviceManger.h in Headers */ = {isa = PBXBuildFile; fileRef = DF27542FB76DE787D730442E /* CMDeviceManger.h */; settings = {ATTRIBUTES = (Public, ); }; };
 /* End PBXBuildFile section */
@@ -129,7 +97,7 @@
 		53942C031937E1EA006B5F2C /* Dictionary.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Dictionary.h; sourceTree = "<group>"; };
 		53942C041937E1EA006B5F2C /* Integer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Integer.h; sourceTree = "<group>"; };
 		53942C051937E1EA006B5F2C /* Key.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Key.h; sourceTree = "<group>"; };
-		53942C061937E1EA006B5F2C /* Node.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Node.h; sourceTree = "<group>"; };
+		53942C061937E1EA006B5F2C /* Node.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.h; fileEncoding = 4; path = Node.h; sourceTree = "<group>"; };
 		53942C071937E1EA006B5F2C /* plist++.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "plist++.h"; sourceTree = "<group>"; };
 		53942C081937E1EA006B5F2C /* plist.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = plist.h; sourceTree = "<group>"; };
 		53942C091937E1EA006B5F2C /* Real.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Real.h; sourceTree = "<group>"; };
@@ -351,42 +319,10 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				53942C0D1937E1EA006B5F2C /* afc.h in Headers */,
-				53942C241937E1EB006B5F2C /* Integer.h in Headers */,
-				53942C1C1937E1EB006B5F2C /* sbservices.h in Headers */,
 				53B4F56D193BA3F400DC3466 /* CMConstants.h in Headers */,
-				53942C0E1937E1EA006B5F2C /* diagnostics_relay.h in Headers */,
-				53942C201937E1EB006B5F2C /* Boolean.h in Headers */,
-				53942C1A1937E1EB006B5F2C /* notification_proxy.h in Headers */,
-				53942C261937E1EB006B5F2C /* Node.h in Headers */,
-				53942C0F1937E1EA006B5F2C /* file_relay.h in Headers */,
-				53942C1D1937E1EB006B5F2C /* screenshotr.h in Headers */,
-				53942C291937E1EB006B5F2C /* Real.h in Headers */,
-				53942C161937E1EA006B5F2C /* mobile_image_mounter.h in Headers */,
-				53942C151937E1EA006B5F2C /* misagent.h in Headers */,
-				53942C141937E1EA006B5F2C /* lockdown.h in Headers */,
-				53942C1E1937E1EB006B5F2C /* webinspector.h in Headers */,
-				53942C101937E1EA006B5F2C /* heartbeat.h in Headers */,
-				53942C1B1937E1EB006B5F2C /* restore.h in Headers */,
-				53942C181937E1EA006B5F2C /* mobilebackup2.h in Headers */,
-				53942C231937E1EB006B5F2C /* Dictionary.h in Headers */,
-				53942C211937E1EB006B5F2C /* Data.h in Headers */,
-				53942C111937E1EA006B5F2C /* house_arrest.h in Headers */,
-				53942C251937E1EB006B5F2C /* Key.h in Headers */,
-				53942C2A1937E1EB006B5F2C /* String.h in Headers */,
-				53942C121937E1EA006B5F2C /* installation_proxy.h in Headers */,
-				53942C281937E1EB006B5F2C /* plist.h in Headers */,
-				53942C2B1937E1EB006B5F2C /* Structure.h in Headers */,
-				53942C1F1937E1EB006B5F2C /* Array.h in Headers */,
-				53942C271937E1EB006B5F2C /* plist++.h in Headers */,
-				53942C221937E1EB006B5F2C /* Date.h in Headers */,
-				53942C171937E1EA006B5F2C /* mobilebackup.h in Headers */,
-				53942C2C1937E1EB006B5F2C /* Uid.h in Headers */,
-				53942C191937E1EB006B5F2C /* mobilesync.h in Headers */,
-				53942BE71937E19A006B5F2C /* CocoaMobileDevice.h in Headers */,
-				53942C131937E1EA006B5F2C /* libimobiledevice.h in Headers */,
 				DF275AC93D8125D872A8FC7D /* CMPlistSerialization.h in Headers */,
 				DF27501B6E639E2B3265B311 /* NSError+libmobiledeviceError.h in Headers */,
+				53942BE71937E19A006B5F2C /* CocoaMobileDevice.h in Headers */,
 				DF275A8E0F8F9C3E03C89595 /* CMDevice.h in Headers */,
 				DF275EEB4974F3B5A70902C5 /* CMDeviceManger.h in Headers */,
 			);
@@ -607,7 +543,7 @@
 		53942B501937DF45006B5F2C /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_MODULES = NO;
 				COMBINE_HIDPI_IMAGES = YES;
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
@@ -634,7 +570,7 @@
 		53942B511937DF45006B5F2C /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_MODULES = NO;
 				COMBINE_HIDPI_IMAGES = YES;
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;

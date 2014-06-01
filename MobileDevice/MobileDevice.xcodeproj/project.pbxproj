@@ -7,7 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		5342B2AF1937E84A0074A843 /* CocoaMobileDevice.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5342B2AE1937E84A0074A843 /* CocoaMobileDevice.framework */; };
+		5322D453193BA7D900B61515 /* CocoaMobileDevice.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 5342B2AE1937E84A0074A843 /* CocoaMobileDevice.framework */; };
+		5342B2AF1937E84A0074A843 /* CocoaMobileDevice.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5342B2AE1937E84A0074A843 /* CocoaMobileDevice.framework */; settings = {ATTRIBUTES = (Required, ); }; };
 		53D3E9871937E6EE00A8B4DF /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 53D3E9861937E6EE00A8B4DF /* Cocoa.framework */; };
 		53D3E9911937E6EE00A8B4DF /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 53D3E98F1937E6EE00A8B4DF /* InfoPlist.strings */; };
 		53D3E9931937E6EE00A8B4DF /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 53D3E9921937E6EE00A8B4DF /* main.m */; };
@@ -30,6 +31,19 @@
 			remoteInfo = MobileDevice;
 		};
 /* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		5322D452193BA7CF00B61515 /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				5322D453193BA7D900B61515 /* CocoaMobileDevice.framework in CopyFiles */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		5342B2AE1937E84A0074A843 /* CocoaMobileDevice.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CocoaMobileDevice.framework; path = "../../../Library/Developer/Xcode/DerivedData/CocoaMobileDevice-eiqqllxvcsksucbuvheerpukfotm/Build/Products/Debug/CocoaMobileDevice.framework"; sourceTree = "<group>"; };
@@ -168,6 +182,7 @@
 				53D3E97F1937E6EE00A8B4DF /* Sources */,
 				53D3E9801937E6EE00A8B4DF /* Frameworks */,
 				53D3E9811937E6EE00A8B4DF /* Resources */,
+				5322D452193BA7CF00B61515 /* CopyFiles */,
 			);
 			buildRules = (
 			);
