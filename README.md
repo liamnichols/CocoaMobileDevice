@@ -25,10 +25,10 @@ Usage
 
 This is the first framework that I have compiled so I'm not sure if I have done it the right way or not so this is subject to change.
 
-1) Grab a copy of the compiled framework from the `/Builds` directory.
-2) Drag the framework into the framework group of your xcode project.
-3) In the **Build Phases** section, tap the + in the top right and add a "New Copy Files Build Phase".
-4) In the new phase, set the Destination to "Frameworks" and then add the framework to this phase.
+1. Grab a copy of the compiled framework from the `/Builds` directory.
+2. Drag the framework into the framework group of your xcode project.
+3. In the **Build Phases** section, tap the + in the top right and add a "New Copy Files Build Phase".
+4. In the new phase, set the Destination to "Frameworks" and then add the framework to this phase.
 
 You should then be able to compile and use the framework.
 
