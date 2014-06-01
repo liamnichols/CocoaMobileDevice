@@ -9,7 +9,15 @@
 #import <Foundation/Foundation.h>
 
 FOUNDATION_EXPORT NSString *CMDeviceDomainDiskUsage;
+FOUNDATION_EXPORT NSString *CMDeviceDomainDiskUsageFactory;
 FOUNDATION_EXPORT NSString *CMDeviceDomainBattery;
+FOUNDATION_EXPORT NSString *CMDeviceDomainIQAgent;
+FOUNDATION_EXPORT NSString *CMDeviceDomainpurplebuddy;
+FOUNDATION_EXPORT NSString *CMDeviceDomainPurpleBuddy;
+FOUNDATION_EXPORT NSString *CMDeviceDomainChapterOne;
+FOUNDATION_EXPORT NSString *CMDeviceDomainThirdPartyTermination;
+FOUNDATION_EXPORT NSString *CMDeviceDomainLockdownd;
+FOUNDATION_EXPORT NSString *CMDeviceDomainLockdowndCache;
 FOUNDATION_EXPORT NSString *CMDeviceDomainDeveloper;
 FOUNDATION_EXPORT NSString *CMDeviceDomainInternational;
 FOUNDATION_EXPORT NSString *CMDeviceDomainDataSync;
@@ -23,6 +31,8 @@ FOUNDATION_EXPORT NSString *CMDeviceDomainSyncDataClass;
 FOUNDATION_EXPORT NSString *CMDeviceDomainSoftwareBehavior;
 FOUNDATION_EXPORT NSString *CMDeviceDomainMusicLibraryProcessComands;
 FOUNDATION_EXPORT NSString *CMDeviceDomainAccessories;
+FOUNDATION_EXPORT NSString *CMDeviceDomainInternal; //iOS 4 +
+FOUNDATION_EXPORT NSString *CMDeviceDomainWirelessLockdown; //iOS 4 +
 FOUNDATION_EXPORT NSString *CMDeviceDomainFairplay;
 FOUNDATION_EXPORT NSString *CMDeviceDomainiTunes;
 FOUNDATION_EXPORT NSString *CMDeviceDomainMobileiTunesStore;

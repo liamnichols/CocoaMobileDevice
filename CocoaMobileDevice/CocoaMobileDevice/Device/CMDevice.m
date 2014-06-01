@@ -12,8 +12,17 @@
 #import <libimobiledevice/lockdown.h>
 #import <CocoaMobileDevice/CocoaMobileDevice.h>
 
+//Note: if modifying this list, make sure you update the `knownDomains` array.
 NSString *CMDeviceDomainDiskUsage = @"com.apple.disk_usage";
+NSString *CMDeviceDomainDiskUsageFactory = @"com.apple.disk_usage.factory";
 NSString *CMDeviceDomainBattery = @"com.apple.mobile.battery";
+NSString *CMDeviceDomainIQAgent = @"com.apple.iqagent";
+NSString *CMDeviceDomainpurplebuddy = @"com.apple.purplebuddy";
+NSString *CMDeviceDomainPurpleBuddy = @"com.apple.PurpleBuddy";
+NSString *CMDeviceDomainChapterOne = @"com.apple.mobile.chaperone";
+NSString *CMDeviceDomainThirdPartyTermination = @"com.apple.mobile.third_party_termination";
+NSString *CMDeviceDomainLockdownd = @"com.apple.mobile.lockdownd";
+NSString *CMDeviceDomainLockdowndCache = @"com.apple.mobile.lockdown_cache";
 NSString *CMDeviceDomainDeveloper = @"com.apple.xcode.developerdomain";
 NSString *CMDeviceDomainInternational = @"com.apple.international";
 NSString *CMDeviceDomainDataSync = @"com.apple.mobile.data_sync";
@@ -27,6 +36,8 @@ NSString *CMDeviceDomainSyncDataClass = @"com.apple.mobile.sync_data_class";
 NSString *CMDeviceDomainSoftwareBehavior = @"com.apple.mobile.software_behavior";
 NSString *CMDeviceDomainMusicLibraryProcessComands = @"com.apple.mobile.iTunes.SQLMusicLibraryPostProcessCommands";
 NSString *CMDeviceDomainAccessories = @"com.apple.mobile.iTunes.accessories";
+NSString *CMDeviceDomainInternal = @"com.apple.mobile.internal";
+NSString *CMDeviceDomainWirelessLockdown = @"com.apple.mobile.wireless_lockdown";
 NSString *CMDeviceDomainFairplay = @"com.apple.fairplay";
 NSString *CMDeviceDomainiTunes = @"com.apple.iTunes";
 NSString *CMDeviceDomainMobileiTunesStore = @"com.apple.mobile.iTunes.store";
@@ -221,7 +232,15 @@ NSString *CMDeviceDomainMobileiTunes = @"com.apple.mobile.iTunes";
     dispatch_once(&onceToken, ^{
         domains = @[
             CMDeviceDomainDiskUsage,
+            CMDeviceDomainDiskUsageFactory,
             CMDeviceDomainBattery,
+            CMDeviceDomainIQAgent,
+            CMDeviceDomainpurplebuddy,
+            CMDeviceDomainPurpleBuddy,
+            CMDeviceDomainChapterOne,
+            CMDeviceDomainThirdPartyTermination,
+            CMDeviceDomainLockdownd,
+            CMDeviceDomainLockdowndCache,
             CMDeviceDomainDeveloper,
             CMDeviceDomainInternational,
             CMDeviceDomainDataSync,
@@ -235,6 +254,8 @@ NSString *CMDeviceDomainMobileiTunes = @"com.apple.mobile.iTunes";
             CMDeviceDomainSoftwareBehavior,
             CMDeviceDomainMusicLibraryProcessComands,
             CMDeviceDomainAccessories,
+            CMDeviceDomainInternal,
+            CMDeviceDomainWirelessLockdown,
             CMDeviceDomainFairplay,
             CMDeviceDomainiTunes,
             CMDeviceDomainMobileiTunesStore,
