@@ -8,7 +8,9 @@
 
 #import "NSError+libmobiledeviceError.h"
 
-NSString *CMErrorDomain = @"CMErrorDomain";
+NSString *CMDeviceErrorDomain = @"CMDeviceErrorDomain";
+NSString *CMLockdowndErrorDomain = @"CMLockdowndErrorDomain";
+NSString *CMScreenshotrErrorDomain = @"CMScreenshotrErrorDomain";
 
 @implementation NSError (libmobiledeviceError)
 
@@ -18,133 +20,162 @@ NSString *CMErrorDomain = @"CMErrorDomain";
 {
     if (errorCode == IDEVICE_E_INVALID_ARG)
     {
-        return [NSError errorWithDomain:CMErrorDomain code:errorCode userInfo:@{ NSLocalizedDescriptionKey : @"An invalid argument was used." }];
+        return [NSError errorWithDomain:CMDeviceErrorDomain code:errorCode userInfo:@{ NSLocalizedDescriptionKey : @"An invalid argument was used." }];
     }
 
     else if (errorCode == IDEVICE_E_NO_DEVICE)
     {
-        return [NSError errorWithDomain:CMErrorDomain code:errorCode userInfo:@{ NSLocalizedDescriptionKey : @"No device was found." }];
+        return [NSError errorWithDomain:CMDeviceErrorDomain code:errorCode userInfo:@{ NSLocalizedDescriptionKey : @"No device was found." }];
     }
 
     else if (errorCode == IDEVICE_E_NOT_ENOUGH_DATA)
     {
-        return [NSError errorWithDomain:CMErrorDomain code:errorCode userInfo:@{ NSLocalizedDescriptionKey : @"Not enough data." }];
+        return [NSError errorWithDomain:CMDeviceErrorDomain code:errorCode userInfo:@{ NSLocalizedDescriptionKey : @"Not enough data." }];
     }
 
     else if (errorCode == IDEVICE_E_BAD_HEADER)
     {
-        return [NSError errorWithDomain:CMErrorDomain code:errorCode userInfo:@{ NSLocalizedDescriptionKey : @"Bad Header." }];
+        return [NSError errorWithDomain:CMDeviceErrorDomain code:errorCode userInfo:@{ NSLocalizedDescriptionKey : @"Bad Header." }];
     }
 
     else if (errorCode == IDEVICE_E_SSL_ERROR)
     {
-        return [NSError errorWithDomain:CMErrorDomain code:errorCode userInfo:@{ NSLocalizedDescriptionKey : @"SSL Error." }];
+        return [NSError errorWithDomain:CMDeviceErrorDomain code:errorCode userInfo:@{ NSLocalizedDescriptionKey : @"SSL Error." }];
     }
 
     else if (errorCode == IDEVICE_E_SUCCESS)
     {
         return nil; //no error.
     }
-    return [NSError errorWithDomain:CMErrorDomain code:errorCode userInfo:@{ NSLocalizedDescriptionKey : @"Unknown error (idevice)." }];
+    return [NSError errorWithDomain:CMDeviceErrorDomain code:errorCode userInfo:@{ NSLocalizedDescriptionKey : @"Unknown error (idevice)." }];
 }
 
 + (NSError *)errorWithLockdownErrorCode:(lockdownd_error_t)errorCode
 {
     if (errorCode == LOCKDOWN_E_INVALID_ARG)
     {
-        return [NSError errorWithDomain:CMErrorDomain code:errorCode userInfo:@{ NSLocalizedDescriptionKey : @"Invalid argument." }];
+        return [NSError errorWithDomain:CMLockdowndErrorDomain code:errorCode userInfo:@{ NSLocalizedDescriptionKey : @"Invalid argument." }];
     }
 
     else if (errorCode == LOCKDOWN_E_INVALID_CONF)
     {
-        return [NSError errorWithDomain:CMErrorDomain code:errorCode userInfo:@{ NSLocalizedDescriptionKey : @"Invalid config." }];
+        return [NSError errorWithDomain:CMLockdowndErrorDomain code:errorCode userInfo:@{ NSLocalizedDescriptionKey : @"Invalid config." }];
     }
 
     else if (errorCode == LOCKDOWN_E_PLIST_ERROR)
     {
-        return [NSError errorWithDomain:CMErrorDomain code:errorCode userInfo:@{ NSLocalizedDescriptionKey : @"Plist error." }];
+        return [NSError errorWithDomain:CMLockdowndErrorDomain code:errorCode userInfo:@{ NSLocalizedDescriptionKey : @"Plist error." }];
     }
 
     else if (errorCode == LOCKDOWN_E_PAIRING_FAILED)
     {
-        return [NSError errorWithDomain:CMErrorDomain code:errorCode userInfo:@{ NSLocalizedDescriptionKey : @"Pairing failed." }];
+        return [NSError errorWithDomain:CMLockdowndErrorDomain code:errorCode userInfo:@{ NSLocalizedDescriptionKey : @"Pairing failed." }];
     }
 
     else if (errorCode == LOCKDOWN_E_SSL_ERROR)
     {
-        return [NSError errorWithDomain:CMErrorDomain code:errorCode userInfo:@{ NSLocalizedDescriptionKey : @"SSL error." }];
+        return [NSError errorWithDomain:CMLockdowndErrorDomain code:errorCode userInfo:@{ NSLocalizedDescriptionKey : @"SSL error." }];
     }
 
     else if (errorCode == LOCKDOWN_E_DICT_ERROR)
     {
-        return [NSError errorWithDomain:CMErrorDomain code:errorCode userInfo:@{ NSLocalizedDescriptionKey : @"Dict error." }];
+        return [NSError errorWithDomain:CMLockdowndErrorDomain code:errorCode userInfo:@{ NSLocalizedDescriptionKey : @"Dict error." }];
     }
 
     else if (errorCode == LOCKDOWN_E_START_SERVICE_FAILED)
     {
-        return [NSError errorWithDomain:CMErrorDomain code:errorCode userInfo:@{ NSLocalizedDescriptionKey : @"Start service failed." }];
+        return [NSError errorWithDomain:CMLockdowndErrorDomain code:errorCode userInfo:@{ NSLocalizedDescriptionKey : @"Start service failed." }];
     }
 
     else if (errorCode == LOCKDOWN_E_NOT_ENOUGH_DATA)
     {
-        return [NSError errorWithDomain:CMErrorDomain code:errorCode userInfo:@{ NSLocalizedDescriptionKey : @"Not enough data." }];
+        return [NSError errorWithDomain:CMLockdowndErrorDomain code:errorCode userInfo:@{ NSLocalizedDescriptionKey : @"Not enough data." }];
     }
 
     else if (errorCode == LOCKDOWN_E_SET_VALUE_PROHIBITED)
     {
-        return [NSError errorWithDomain:CMErrorDomain code:errorCode userInfo:@{ NSLocalizedDescriptionKey : @"Set value prohibited." }];
+        return [NSError errorWithDomain:CMLockdowndErrorDomain code:errorCode userInfo:@{ NSLocalizedDescriptionKey : @"Set value prohibited." }];
     }
 
     else if (errorCode == LOCKDOWN_E_GET_VALUE_PROHIBITED)
     {
-        return [NSError errorWithDomain:CMErrorDomain code:errorCode userInfo:@{ NSLocalizedDescriptionKey : @"Get value prohibited." }];
+        return [NSError errorWithDomain:CMLockdowndErrorDomain code:errorCode userInfo:@{ NSLocalizedDescriptionKey : @"Get value prohibited." }];
     }
 
     else if (errorCode == LOCKDOWN_E_REMOVE_VALUE_PROHIBITED)
     {
-        return [NSError errorWithDomain:CMErrorDomain code:errorCode userInfo:@{ NSLocalizedDescriptionKey : @"Remove value prohibited." }];
+        return [NSError errorWithDomain:CMLockdowndErrorDomain code:errorCode userInfo:@{ NSLocalizedDescriptionKey : @"Remove value prohibited." }];
     }
 
     else if (errorCode == LOCKDOWN_E_MUX_ERROR)
     {
-        return [NSError errorWithDomain:CMErrorDomain code:errorCode userInfo:@{ NSLocalizedDescriptionKey : @"Mux error." }];
+        return [NSError errorWithDomain:CMLockdowndErrorDomain code:errorCode userInfo:@{ NSLocalizedDescriptionKey : @"Mux error." }];
     }
 
     else if (errorCode == LOCKDOWN_E_ACTIVATION_FAILED)
     {
-        return [NSError errorWithDomain:CMErrorDomain code:errorCode userInfo:@{ NSLocalizedDescriptionKey : @"Activation failed." }];
+        return [NSError errorWithDomain:CMLockdowndErrorDomain code:errorCode userInfo:@{ NSLocalizedDescriptionKey : @"Activation failed." }];
     }
 
     else if (errorCode == LOCKDOWN_E_PASSWORD_PROTECTED)
     {
-        return [NSError errorWithDomain:CMErrorDomain code:errorCode userInfo:@{ NSLocalizedDescriptionKey : @"Password protected." }];
+        return [NSError errorWithDomain:CMLockdowndErrorDomain code:errorCode userInfo:@{ NSLocalizedDescriptionKey : @"Password protected." }];
     }
 
     else if (errorCode == LOCKDOWN_E_NO_RUNNING_SESSION)
     {
-        return [NSError errorWithDomain:CMErrorDomain code:errorCode userInfo:@{ NSLocalizedDescriptionKey : @"No running session." }];
+        return [NSError errorWithDomain:CMLockdowndErrorDomain code:errorCode userInfo:@{ NSLocalizedDescriptionKey : @"No running session." }];
     }
 
     else if (errorCode == LOCKDOWN_E_INVALID_HOST_ID)
     {
-        return [NSError errorWithDomain:CMErrorDomain code:errorCode userInfo:@{ NSLocalizedDescriptionKey : @"Invalid host ID." }];
+        return [NSError errorWithDomain:CMLockdowndErrorDomain code:errorCode userInfo:@{ NSLocalizedDescriptionKey : @"Invalid host ID." }];
     }
 
     else if (errorCode == LOCKDOWN_E_INVALID_SERVICE)
     {
-        return [NSError errorWithDomain:CMErrorDomain code:errorCode userInfo:@{ NSLocalizedDescriptionKey : @"Invalid service." }];
+        return [NSError errorWithDomain:CMLockdowndErrorDomain code:errorCode userInfo:@{ NSLocalizedDescriptionKey : @"Invalid service." }];
     }
 
     else if (errorCode == LOCKDOWN_E_INVALID_ACTIVATION_RECORD)
     {
-        return [NSError errorWithDomain:CMErrorDomain code:errorCode userInfo:@{ NSLocalizedDescriptionKey : @"Invalid activation record." }];
+        return [NSError errorWithDomain:CMLockdowndErrorDomain code:errorCode userInfo:@{ NSLocalizedDescriptionKey : @"Invalid activation record." }];
     }
 
     else if (errorCode == LOCKDOWN_E_SUCCESS)
     {
         return nil; //no error.
     }
-    return [NSError errorWithDomain:CMErrorDomain code:errorCode userInfo:@{ NSLocalizedDescriptionKey : @"Unknown error (lockdownd)." }];
+    return [NSError errorWithDomain:CMLockdowndErrorDomain code:errorCode userInfo:@{ NSLocalizedDescriptionKey : @"Unknown error (lockdownd)." }];
+}
+
++ (NSError *)errorWithScreenshorErrorCode:(screenshotr_error_t)errorCode
+{
+    if (errorCode == SCREENSHOTR_E_INVALID_ARG)
+    {
+        return [NSError errorWithDomain:CMScreenshotrErrorDomain code:errorCode userInfo:@{ NSLocalizedDescriptionKey : @"Invalid arg." }];
+    }
+    
+    else if (errorCode == SCREENSHOTR_E_PLIST_ERROR)
+    {
+        return [NSError errorWithDomain:CMScreenshotrErrorDomain code:errorCode userInfo:@{ NSLocalizedDescriptionKey : @"Plist error." }];
+    }
+    
+    else if (errorCode == SCREENSHOTR_E_MUX_ERROR)
+    {
+        return [NSError errorWithDomain:CMScreenshotrErrorDomain code:errorCode userInfo:@{ NSLocalizedDescriptionKey : @"Mux error." }];
+    }
+    
+    else if (errorCode == SCREENSHOTR_E_BAD_VERSION)
+    {
+        return [NSError errorWithDomain:CMScreenshotrErrorDomain code:errorCode userInfo:@{ NSLocalizedDescriptionKey : @"Bad version." }];
+    }
+    
+    else if (errorCode == SCREENSHOTR_E_SUCCESS)
+    {
+        return nil; //no error.
+    }
+    return [NSError errorWithDomain:CMScreenshotrErrorDomain code:errorCode userInfo:@{ NSLocalizedDescriptionKey : @"Unknown error (screenshotr)." }];
 }
 
 

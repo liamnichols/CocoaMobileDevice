@@ -9,13 +9,18 @@
 #import <Foundation/Foundation.h>
 #import <libimobiledevice/libimobiledevice.h>
 #import <libimobiledevice/lockdown.h>
+#import <libimobiledevice/screenshotr.h>
 
-FOUNDATION_EXPORT NSString *CMErrorDomain;
+FOUNDATION_EXPORT NSString *CMDeviceErrorDomain;
+FOUNDATION_EXPORT NSString *CMLockdowndErrorDomain;
+FOUNDATION_EXPORT NSString *CMScreenshotrErrorDomain;
 
 @interface NSError (libmobiledeviceError)
 
 + (NSError *)errorWithDeviceErrorCode:(idevice_error_t)errorCode;
 
 + (NSError *)errorWithLockdownErrorCode:(lockdownd_error_t)errorCode;
+
++ (NSError *)errorWithScreenshorErrorCode:(screenshotr_error_t)errorCode;
 
 @end

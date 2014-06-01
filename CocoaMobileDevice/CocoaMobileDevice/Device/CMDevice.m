@@ -257,14 +257,12 @@ NSString *CMDeviceDomainMobileiTunes = @"com.apple.mobile.iTunes";
                 }
                 else
                 {
-                    //TODO: add support for SCREENSHOTR_E errors
-                    *error = nil;
+                    *error = [NSError errorWithScreenshorErrorCode:err];
                 }
             }
             else
             {
-                //TODO: add support for SCREENSHOTR_E errors
-                *error = nil;
+                *error = [NSError errorWithScreenshorErrorCode:err];
             }
             
             if (shotr)
@@ -273,8 +271,7 @@ NSString *CMDeviceDomainMobileiTunes = @"com.apple.mobile.iTunes";
         }
         else
         {
-            //TOOD: Return screnshotr error here about unable to start service.
-            *error = nil;
+            *error = [NSError errorWithScreenshorErrorCode:SCREENSHOTR_E_UNKNOWN_ERROR];
         }
     }
     else
