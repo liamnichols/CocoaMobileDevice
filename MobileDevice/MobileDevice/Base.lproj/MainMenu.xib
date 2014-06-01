@@ -690,7 +690,7 @@
                         </textFieldCell>
                     </textField>
                     <popUpButton verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="bIa-pD-f3j">
-                        <rect key="frame" x="113" y="316" width="350" height="26"/>
+                        <rect key="frame" x="113" y="316" width="212" height="26"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                         <popUpButtonCell key="cell" type="push" bezelStyle="rounded" alignment="left" lineBreakMode="truncatingTail" borderStyle="borderAndBezel" imageScaling="proportionallyDown" inset="2" id="VVZ-sv-sd2">
                             <behavior key="behavior" lightByBackground="YES" lightByGray="YES"/>
@@ -839,6 +839,17 @@
                         <color key="borderColor" white="0.0" alpha="0.41999999999999998" colorSpace="calibratedWhite"/>
                         <color key="fillColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                     </box>
+                    <button horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="ahd-aD-uJ8">
+                        <rect key="frame" x="324" y="312" width="142" height="32"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                        <buttonCell key="cell" type="push" title="Take Screenshot" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="754-Te-m06">
+                            <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                            <font key="font" metaFont="system"/>
+                        </buttonCell>
+                        <connections>
+                            <action selector="takeScreenshot:" target="Voe-Tx-rLC" id="a4H-6b-vyd"/>
+                        </connections>
+                    </button>
                 </subviews>
                 <constraints>
                     <constraint firstItem="G8G-aG-o41" firstAttribute="leading" secondItem="EiT-Mj-1SZ" secondAttribute="leading" constant="20" id="0yc-ee-bNY"/>
@@ -848,13 +859,15 @@
                     <constraint firstItem="bIa-pD-f3j" firstAttribute="centerY" secondItem="nCc-jw-t5c" secondAttribute="centerY" constant="2" id="H7K-1c-W8u"/>
                     <constraint firstItem="bIa-pD-f3j" firstAttribute="top" secondItem="EiT-Mj-1SZ" secondAttribute="top" constant="20" id="J2V-Rd-E0X"/>
                     <constraint firstItem="nCc-jw-t5c" firstAttribute="leading" secondItem="EiT-Mj-1SZ" secondAttribute="leading" constant="20" id="KrZ-kl-zUT"/>
+                    <constraint firstItem="ahd-aD-uJ8" firstAttribute="leading" secondItem="bIa-pD-f3j" secondAttribute="trailing" constant="8" id="MPA-4G-iH3"/>
                     <constraint firstItem="884-Gx-CXJ" firstAttribute="top" secondItem="EpH-Rr-8aM" secondAttribute="bottom" constant="10" id="RKA-FV-QMt"/>
+                    <constraint firstItem="ahd-aD-uJ8" firstAttribute="top" secondItem="EiT-Mj-1SZ" secondAttribute="top" constant="20" id="Wnh-BG-106"/>
                     <constraint firstItem="bIa-pD-f3j" firstAttribute="leading" secondItem="nCc-jw-t5c" secondAttribute="trailing" constant="8" id="YhW-UP-saK"/>
                     <constraint firstAttribute="centerY" secondItem="bIa-pD-f3j" secondAttribute="centerY" constant="149.5" id="fM5-Fz-kod"/>
                     <constraint firstItem="EpH-Rr-8aM" firstAttribute="top" secondItem="bIa-pD-f3j" secondAttribute="bottom" constant="10" id="ggC-sJ-7Jp"/>
                     <constraint firstItem="884-Gx-CXJ" firstAttribute="leading" secondItem="EiT-Mj-1SZ" secondAttribute="leading" constant="20" id="h92-cf-rhH"/>
                     <constraint firstItem="G8G-aG-o41" firstAttribute="top" secondItem="884-Gx-CXJ" secondAttribute="bottom" constant="8" id="o3m-ES-x4A"/>
-                    <constraint firstAttribute="trailing" secondItem="bIa-pD-f3j" secondAttribute="trailing" constant="20" id="pDf-qe-1Mi"/>
+                    <constraint firstAttribute="trailing" secondItem="ahd-aD-uJ8" secondAttribute="trailing" constant="20" id="pnI-sp-ycf"/>
                     <constraint firstItem="EpH-Rr-8aM" firstAttribute="leading" secondItem="EiT-Mj-1SZ" secondAttribute="leading" constant="20" id="s93-52-wxe"/>
                     <constraint firstAttribute="trailing" secondItem="EpH-Rr-8aM" secondAttribute="trailing" constant="20" id="tTn-JF-DxA"/>
                 </constraints>

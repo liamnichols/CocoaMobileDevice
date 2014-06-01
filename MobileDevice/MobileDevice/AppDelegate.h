@@ -10,7 +10,11 @@
 
 @interface AppDelegate : NSObject <NSApplicationDelegate>
 
+//windows
+
 @property (assign) IBOutlet NSWindow *window;
+
+//ui
 
 @property (nonatomic, strong) IBOutlet NSPopUpButton *deviceList;
 
@@ -29,5 +33,9 @@
 - (IBAction)didPressReadButton:(id)sender;
 
 - (IBAction)didPressWriteButton:(id)sender;
+
+//screenshotr
+
+- (IBAction)takeScreenshot:(id)sender;
 
 @end
