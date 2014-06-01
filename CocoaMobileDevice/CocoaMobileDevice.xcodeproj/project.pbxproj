@@ -556,6 +556,7 @@
 					"$(SRCROOT)/include/",
 				);
 				INFOPLIST_FILE = "CocoaMobileDevice/CocoaMobileDevice-Info.plist";
+				INSTALL_PATH = "@executable_path/../Frameworks";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/CocoaMobileDevice",
@@ -583,6 +584,7 @@
 					"$(SRCROOT)/include/",
 				);
 				INFOPLIST_FILE = "CocoaMobileDevice/CocoaMobileDevice-Info.plist";
+				INSTALL_PATH = "@executable_path/../Frameworks";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/CocoaMobileDevice",
