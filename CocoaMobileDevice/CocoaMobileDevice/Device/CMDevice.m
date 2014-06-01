@@ -94,6 +94,17 @@ NSString *CMDeviceDomainMobileiTunes = @"com.apple.mobile.iTunes";
     return YES;
 }
 
+-(BOOL)disconnect
+{
+    if (client)
+    {
+        lockdownd_client_free(client);
+        client = NULL;
+    }
+    _connected = NO;
+    return YES;
+}
+
 #pragma mark - reading
 
 -(id)readDomain:(NSString *)domain error:(NSError *__autoreleasing *)error

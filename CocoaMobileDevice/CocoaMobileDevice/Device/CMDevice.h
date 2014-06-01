@@ -40,6 +40,8 @@ FOUNDATION_EXPORT NSString *CMDeviceDomainMobileiTunes;
 
 - (BOOL)connect:(NSError **)error;
 
+- (BOOL)disconnect;
+
 /// @name Device Name
 
 - (BOOL)loadDeviceName;

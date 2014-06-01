@@ -58,11 +58,16 @@
         [self.deviceList addItemWithTitle:@"Select a Device"];
         [[[CMDeviceManger sharedManager] devices] enumerateObjectsUsingBlock:^(CMDevice *device, NSUInteger idx, BOOL *stop) {
 
-            if (device.deviceName)
+            if (!device.deviceName)
             {
-                [self.deviceList addItemWithTitle:device.deviceName];
+                if ([device connect:nil])
+                {
+                    [device loadDeviceName];
+                    [device disconnect];
+                }
             }
-            else if (!device.connected && [device connect:nil] && [device loadDeviceName])
+            
+            if (device.deviceName)
             {
                 [self.deviceList addItemWithTitle:device.deviceName];
             }
@@ -162,6 +167,8 @@
     {
         LogToUI(@"Error Reading: %@", error);
     }
+    
+    [self.selectedDevice disconnect];
 }
 
 #pragma mark - Write
@@ -222,6 +229,8 @@
     {
         LogToUI(@"Error Writing: %@", error);
     }
+    
+    [self.selectedDevice disconnect];
 }
 
 #pragma mark - Both
