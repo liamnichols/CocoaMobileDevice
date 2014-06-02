@@ -7,8 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		5322D453193BA7D900B61515 /* CocoaMobileDevice.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 5342B2AE1937E84A0074A843 /* CocoaMobileDevice.framework */; };
-		5342B2AF1937E84A0074A843 /* CocoaMobileDevice.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5342B2AE1937E84A0074A843 /* CocoaMobileDevice.framework */; settings = {ATTRIBUTES = (Required, ); }; };
+		162DD890193C6EDE003EBC82 /* CocoaMobileDevice.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 162DD88F193C6EDE003EBC82 /* CocoaMobileDevice.framework */; };
 		53D3E9871937E6EE00A8B4DF /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 53D3E9861937E6EE00A8B4DF /* Cocoa.framework */; };
 		53D3E9911937E6EE00A8B4DF /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 53D3E98F1937E6EE00A8B4DF /* InfoPlist.strings */; };
 		53D3E9931937E6EE00A8B4DF /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 53D3E9921937E6EE00A8B4DF /* main.m */; };
@@ -39,13 +38,13 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
-				5322D453193BA7D900B61515 /* CocoaMobileDevice.framework in CopyFiles */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		162DD88F193C6EDE003EBC82 /* CocoaMobileDevice.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CocoaMobileDevice.framework; path = "../../../Library/Developer/Xcode/DerivedData/CocoaMobileDevice-frdagcvvywwnelbtanrrfudndyua/Build/Products/Debug/CocoaMobileDevice.framework"; sourceTree = "<group>"; };
 		5342B2AE1937E84A0074A843 /* CocoaMobileDevice.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CocoaMobileDevice.framework; path = "../../../Library/Developer/Xcode/DerivedData/CocoaMobileDevice-eiqqllxvcsksucbuvheerpukfotm/Build/Products/Debug/CocoaMobileDevice.framework"; sourceTree = "<group>"; };
 		53D3E9831937E6EE00A8B4DF /* MobileDevice.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MobileDevice.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		53D3E9861937E6EE00A8B4DF /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = System/Library/Frameworks/Cocoa.framework; sourceTree = SDKROOT; };
@@ -73,7 +72,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				5342B2AF1937E84A0074A843 /* CocoaMobileDevice.framework in Frameworks */,
+				162DD890193C6EDE003EBC82 /* CocoaMobileDevice.framework in Frameworks */,
 				53D3E9871937E6EE00A8B4DF /* Cocoa.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -112,6 +111,7 @@
 		53D3E9851937E6EE00A8B4DF /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				162DD88F193C6EDE003EBC82 /* CocoaMobileDevice.framework */,
 				5342B2AE1937E84A0074A843 /* CocoaMobileDevice.framework */,
 				53D3E9861937E6EE00A8B4DF /* Cocoa.framework */,
 				53D3E9A51937E6EE00A8B4DF /* XCTest.framework */,
@@ -418,6 +418,7 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(USER_LIBRARY_DIR)/Developer/Xcode/DerivedData/CocoaMobileDevice-eiqqllxvcsksucbuvheerpukfotm/Build/Products/Debug",
+					"$(USER_LIBRARY_DIR)/Developer/Xcode/DerivedData/CocoaMobileDevice-frdagcvvywwnelbtanrrfudndyua/Build/Products/Debug",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "MobileDevice/MobileDevice-Prefix.pch";
@@ -435,6 +436,7 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(USER_LIBRARY_DIR)/Developer/Xcode/DerivedData/CocoaMobileDevice-eiqqllxvcsksucbuvheerpukfotm/Build/Products/Debug",
+					"$(USER_LIBRARY_DIR)/Developer/Xcode/DerivedData/CocoaMobileDevice-frdagcvvywwnelbtanrrfudndyua/Build/Products/Debug",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "MobileDevice/MobileDevice-Prefix.pch";
