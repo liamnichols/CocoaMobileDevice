@@ -106,17 +106,17 @@
     _selectedDevice = selectedDevice;
     
     
-    if (selectedDevice)
-    {
-        NSError *error = nil;
-        if (!selectedDevice.connected) {
-            if (![selectedDevice connect:&error]) {
-                [[NSAlert alertWithError:error] runModal];
-                return;
-            }
-        }
-        
-    }
+    //don't connect on selection.
+//    if (selectedDevice)
+//    {
+//        NSError *error = nil;
+//        if (!selectedDevice.connected) {
+//            if (![selectedDevice connect:&error]) {
+//                [[NSAlert alertWithError:error] runModal];
+//                return;
+//            }
+//        }
+//    }
 }
 
 #pragma mark - Reading
