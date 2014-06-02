@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		169AF846193C7E1C003E05C9 /* libxml2.2.dylib in CopyFiles */ = {isa = PBXBuildFile; fileRef = 169AF844193C7E09003E05C9 /* libxml2.2.dylib */; };
 		53942B2B1937DF45006B5F2C /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 53942B2A1937DF45006B5F2C /* Cocoa.framework */; };
 		53942B351937DF45006B5F2C /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 53942B331937DF45006B5F2C /* InfoPlist.strings */; };
 		53942B401937DF45006B5F2C /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 53942B3F1937DF45006B5F2C /* XCTest.framework */; };
@@ -49,6 +50,7 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
+				169AF846193C7E1C003E05C9 /* libxml2.2.dylib in CopyFiles */,
 				53DB7CA0193BA28800502C8A /* libimobiledevice.4.dylib in CopyFiles */,
 				53DB7CA1193BA28800502C8A /* libplist.2.dylib in CopyFiles */,
 				53DB7CA2193BA28800502C8A /* libusbmuxd.1.0.8.dylib in CopyFiles */,
@@ -58,6 +60,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		169AF844193C7E09003E05C9 /* libxml2.2.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libxml2.2.dylib; path = Frameworks/libxml2.2.dylib; sourceTree = "<group>"; };
 		53942B271937DF45006B5F2C /* CocoaMobileDevice.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = CocoaMobileDevice.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		53942B2A1937DF45006B5F2C /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = System/Library/Frameworks/Cocoa.framework; sourceTree = SDKROOT; };
 		53942B2D1937DF45006B5F2C /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -166,6 +169,7 @@
 		53942B291937DF45006B5F2C /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				169AF844193C7E09003E05C9 /* libxml2.2.dylib */,
 				53DB7C9A193BA27F00502C8A /* libimobiledevice.4.dylib */,
 				53DB7C9B193BA27F00502C8A /* libplist.2.dylib */,
 				53DB7C9C193BA27F00502C8A /* libusbmuxd.1.0.8.dylib */,
