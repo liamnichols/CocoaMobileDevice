@@ -17,11 +17,19 @@
 		53942BE71937E19A006B5F2C /* CocoaMobileDevice.h in Headers */ = {isa = PBXBuildFile; fileRef = 53942B371937DF45006B5F2C /* CocoaMobileDevice.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		53B4F56D193BA3F400DC3466 /* CMConstants.h in Headers */ = {isa = PBXBuildFile; fileRef = 53B4F56B193BA3F400DC3466 /* CMConstants.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		53B4F56E193BA3F400DC3466 /* CMConstants.m in Sources */ = {isa = PBXBuildFile; fileRef = 53B4F56C193BA3F400DC3466 /* CMConstants.m */; };
+		53BF88EC19576FF2006B777C /* CMCrashLogManager.h in Headers */ = {isa = PBXBuildFile; fileRef = 53BF88EA19576FF2006B777C /* CMCrashLogManager.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		53BF88ED19576FF2006B777C /* CMCrashLogManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 53BF88EB19576FF2006B777C /* CMCrashLogManager.m */; };
+		53BF892719577DF5006B777C /* libarchive.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 53BF892619577DF5006B777C /* libarchive.dylib */; };
 		53DB7C9D193BA27F00502C8A /* libimobiledevice.4.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 53DB7C9A193BA27F00502C8A /* libimobiledevice.4.dylib */; };
 		53DB7C9E193BA27F00502C8A /* libplist.2.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 53DB7C9B193BA27F00502C8A /* libplist.2.dylib */; };
 		53DB7CA0193BA28800502C8A /* libimobiledevice.4.dylib in CopyFiles */ = {isa = PBXBuildFile; fileRef = 53DB7C9A193BA27F00502C8A /* libimobiledevice.4.dylib */; };
 		53DB7CA1193BA28800502C8A /* libplist.2.dylib in CopyFiles */ = {isa = PBXBuildFile; fileRef = 53DB7C9B193BA27F00502C8A /* libplist.2.dylib */; };
 		53DB7CA2193BA28800502C8A /* libusbmuxd.1.0.8.dylib in CopyFiles */ = {isa = PBXBuildFile; fileRef = 53DB7C9C193BA27F00502C8A /* libusbmuxd.1.0.8.dylib */; };
+		53F9A4D71958542B00A62603 /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 53BF890B19577486006B777C /* libz.dylib */; };
+		53F9A4DC1958561D00A62603 /* archive.h in Headers */ = {isa = PBXBuildFile; fileRef = 53F9A4D91958561D00A62603 /* archive.h */; };
+		53F9A4DD1958561D00A62603 /* archive_entry.h in Headers */ = {isa = PBXBuildFile; fileRef = 53F9A4DA1958561D00A62603 /* archive_entry.h */; };
+		53F9A4DE1958561D00A62603 /* bzlib.h in Headers */ = {isa = PBXBuildFile; fileRef = 53F9A4DB1958561D00A62603 /* bzlib.h */; };
+		53F9A4E01958562800A62603 /* libbz2.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 53F9A4DF1958562800A62603 /* libbz2.dylib */; };
 		DF27501B6E639E2B3265B311 /* NSError+libmobiledeviceError.h in Headers */ = {isa = PBXBuildFile; fileRef = DF275A3C18A7E9FA1D89112D /* NSError+libmobiledeviceError.h */; settings = {ATTRIBUTES = (Private, ); }; };
 		DF27522146FC2881D7F2725D /* CMPlistSerialization.m in Sources */ = {isa = PBXBuildFile; fileRef = DF2752656BA49577EC6FC44C /* CMPlistSerialization.m */; };
 		DF2754ACED1C0C1A0493A961 /* CMDeviceManger.m in Sources */ = {isa = PBXBuildFile; fileRef = DF2754C6EC78BEE86C760BA1 /* CMDeviceManger.m */; };
@@ -106,9 +114,18 @@
 		53942C0C1937E1EA006B5F2C /* Uid.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Uid.h; sourceTree = "<group>"; };
 		53B4F56B193BA3F400DC3466 /* CMConstants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CMConstants.h; sourceTree = "<group>"; };
 		53B4F56C193BA3F400DC3466 /* CMConstants.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CMConstants.m; sourceTree = "<group>"; };
+		53BF88EA19576FF2006B777C /* CMCrashLogManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CMCrashLogManager.h; sourceTree = "<group>"; };
+		53BF88EB19576FF2006B777C /* CMCrashLogManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CMCrashLogManager.m; sourceTree = "<group>"; };
+		53BF88EE1957706C006B777C /* CMCrashLogManager-Private.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "CMCrashLogManager-Private.h"; sourceTree = "<group>"; };
+		53BF890B19577486006B777C /* libz.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.dylib; path = usr/lib/libz.dylib; sourceTree = SDKROOT; };
+		53BF892619577DF5006B777C /* libarchive.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libarchive.dylib; path = usr/lib/libarchive.dylib; sourceTree = SDKROOT; };
 		53DB7C9A193BA27F00502C8A /* libimobiledevice.4.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libimobiledevice.4.dylib; path = Frameworks/libimobiledevice.4.dylib; sourceTree = "<group>"; };
 		53DB7C9B193BA27F00502C8A /* libplist.2.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libplist.2.dylib; path = Frameworks/libplist.2.dylib; sourceTree = "<group>"; };
 		53DB7C9C193BA27F00502C8A /* libusbmuxd.1.0.8.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libusbmuxd.1.0.8.dylib; path = Frameworks/libusbmuxd.1.0.8.dylib; sourceTree = "<group>"; };
+		53F9A4D91958561D00A62603 /* archive.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = archive.h; sourceTree = "<group>"; };
+		53F9A4DA1958561D00A62603 /* archive_entry.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = archive_entry.h; sourceTree = "<group>"; };
+		53F9A4DB1958561D00A62603 /* bzlib.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = bzlib.h; sourceTree = "<group>"; };
+		53F9A4DF1958562800A62603 /* libbz2.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libbz2.dylib; path = usr/lib/libbz2.dylib; sourceTree = SDKROOT; };
 		DF2752656BA49577EC6FC44C /* CMPlistSerialization.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CMPlistSerialization.m; sourceTree = "<group>"; };
 		DF27542FB76DE787D730442E /* CMDeviceManger.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CMDeviceManger.h; sourceTree = "<group>"; };
 		DF2754792EDECC5482F1CD2C /* NSError+libmobiledeviceError.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSError+libmobiledeviceError.m"; sourceTree = "<group>"; };
@@ -124,6 +141,9 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				53F9A4E01958562800A62603 /* libbz2.dylib in Frameworks */,
+				53F9A4D71958542B00A62603 /* libz.dylib in Frameworks */,
+				53BF892719577DF5006B777C /* libarchive.dylib in Frameworks */,
 				53DB7C9D193BA27F00502C8A /* libimobiledevice.4.dylib in Frameworks */,
 				53DB7C9E193BA27F00502C8A /* libplist.2.dylib in Frameworks */,
 				53942B2B1937DF45006B5F2C /* Cocoa.framework in Frameworks */,
@@ -166,6 +186,9 @@
 		53942B291937DF45006B5F2C /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				53F9A4DF1958562800A62603 /* libbz2.dylib */,
+				53BF892619577DF5006B777C /* libarchive.dylib */,
+				53BF890B19577486006B777C /* libz.dylib */,
 				53DB7C9A193BA27F00502C8A /* libimobiledevice.4.dylib */,
 				53DB7C9B193BA27F00502C8A /* libplist.2.dylib */,
 				53DB7C9C193BA27F00502C8A /* libusbmuxd.1.0.8.dylib */,
@@ -196,6 +219,7 @@
 				DF275794DF839C4A626630F0 /* Serializers */,
 				DF2754376C50BFF6DDDF85BA /* Categories */,
 				DF275939511133F16BE99DBE /* Device */,
+				53BF88E919576F2F006B777C /* Crash Logs */,
 			);
 			path = CocoaMobileDevice;
 			sourceTree = "<group>";
@@ -231,6 +255,7 @@
 		53942BEA1937E1EA006B5F2C /* include */ = {
 			isa = PBXGroup;
 			children = (
+				53F9A4D81958561D00A62603 /* libarchive */,
 				53942BEB1937E1EA006B5F2C /* libimobiledevice */,
 				53942BFE1937E1EA006B5F2C /* plist */,
 			);
@@ -283,6 +308,26 @@
 			path = plist;
 			sourceTree = "<group>";
 		};
+		53BF88E919576F2F006B777C /* Crash Logs */ = {
+			isa = PBXGroup;
+			children = (
+				53BF88EA19576FF2006B777C /* CMCrashLogManager.h */,
+				53BF88EB19576FF2006B777C /* CMCrashLogManager.m */,
+				53BF88EE1957706C006B777C /* CMCrashLogManager-Private.h */,
+			);
+			name = "Crash Logs";
+			sourceTree = "<group>";
+		};
+		53F9A4D81958561D00A62603 /* libarchive */ = {
+			isa = PBXGroup;
+			children = (
+				53F9A4D91958561D00A62603 /* archive.h */,
+				53F9A4DA1958561D00A62603 /* archive_entry.h */,
+				53F9A4DB1958561D00A62603 /* bzlib.h */,
+			);
+			path = libarchive;
+			sourceTree = "<group>";
+		};
 		DF2754376C50BFF6DDDF85BA /* Categories */ = {
 			isa = PBXGroup;
 			children = (
@@ -320,10 +365,14 @@
 			buildActionMask = 2147483647;
 			files = (
 				53B4F56D193BA3F400DC3466 /* CMConstants.h in Headers */,
+				53F9A4DC1958561D00A62603 /* archive.h in Headers */,
 				DF275AC93D8125D872A8FC7D /* CMPlistSerialization.h in Headers */,
+				53BF88EC19576FF2006B777C /* CMCrashLogManager.h in Headers */,
 				DF27501B6E639E2B3265B311 /* NSError+libmobiledeviceError.h in Headers */,
+				53F9A4DD1958561D00A62603 /* archive_entry.h in Headers */,
 				53942BE71937E19A006B5F2C /* CocoaMobileDevice.h in Headers */,
 				DF275A8E0F8F9C3E03C89595 /* CMDevice.h in Headers */,
+				53F9A4DE1958561D00A62603 /* bzlib.h in Headers */,
 				DF275EEB4974F3B5A70902C5 /* CMDeviceManger.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -426,6 +475,7 @@
 			files = (
 				DF27522146FC2881D7F2725D /* CMPlistSerialization.m in Sources */,
 				53B4F56E193BA3F400DC3466 /* CMConstants.m in Sources */,
+				53BF88ED19576FF2006B777C /* CMCrashLogManager.m in Sources */,
 				DF275CDEE0E19141086A3808 /* NSError+libmobiledeviceError.m in Sources */,
 				DF2754ACED1C0C1A0493A961 /* CMDeviceManger.m in Sources */,
 				DF27588747A33C3F01CC2744 /* CMDevice.m in Sources */,

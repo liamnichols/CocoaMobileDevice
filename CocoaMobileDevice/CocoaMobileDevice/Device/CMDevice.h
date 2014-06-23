@@ -72,6 +72,10 @@ FOUNDATION_EXPORT NSString *CMDeviceDomainMobileiTunes;
 
 - (NSData *)getScreenshot:(NSError **)error;
 
+/// @name Crash Logs
+
+- (BOOL)reloadDeviceCrashLogs:(NSError **)error;
+
 /// @name Misc
 
 + (NSArray *)knownDomains;

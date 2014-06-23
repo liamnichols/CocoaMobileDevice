@@ -7,10 +7,13 @@
 
 #import "CMDevice.h"
 #import "CMPlistSerialization.h"
+#import "CMCrashLogManager.h"
+#import "CMCrashLogManager-Private.h"
 #import "NSError+libmobiledeviceError.h"
 #import <libimobiledevice/libimobiledevice.h>
 #import <libimobiledevice/lockdown.h>
 #import <libimobiledevice/screenshotr.h>
+#import <libimobiledevice/file_relay.h>
 #import <CocoaMobileDevice/CocoaMobileDevice.h>
 
 //Note: if modifying this list, make sure you update the `knownDomains` array.
@@ -280,6 +283,67 @@ NSString *CMDeviceDomainMobileiTunes = @"com.apple.mobile.iTunes";
     }
     
     return data;
+}
+
+#pragma mark - Crash Logs
+
+- (BOOL)reloadDeviceCrashLogs:(NSError *__autoreleasing *)error
+{
+    lockdownd_service_descriptor_t service = NULL;
+    const char *sources[] = {"CrashReporter", NULL};
+    idevice_connection_t dump = NULL;
+    file_relay_client_t frc = NULL;
+    
+    //start a new file relay service.
+    if ((lockdownd_start_service(client, "com.apple.mobile.file_relay", &service) != LOCKDOWN_E_SUCCESS) || !service) {
+        if (error) {
+            *error = [NSError new]; //TODO: make error.
+        }
+        return NO;
+    }
+    
+    //create the relay client
+    if (file_relay_client_new(phone, service, &frc) != FILE_RELAY_E_SUCCESS) {
+        if (error) {
+            *error = [NSError new]; //TODO: make error.
+        }
+        return NO;
+    }
+    
+    //request the CrashReporter sources
+    if (file_relay_request_sources(frc, sources, &dump) != FILE_RELAY_E_SUCCESS) {
+        if (error) {
+            *error = [NSError new]; //TODO: make error.
+        }
+        return NO;
+    }
+    
+    //verify the connection has been made.
+    if (!dump) {
+        if (error) {
+            *error = [NSError new]; //TODO: make error.
+        }
+        return NO;
+    }
+    
+    uint32_t cnt = 0;
+    uint32_t len = 0;
+    char buf[4096];
+    char* dumpTmpFile = tmpnam(NULL);
+    FILE *f = fopen(dumpTmpFile, "w");
+    
+    //receiving file
+    while (idevice_connection_receive(dump, buf, 4096, &len) == IDEVICE_E_SUCCESS) {
+        fwrite(buf, 1, len, f);
+        cnt += len;
+        len = 0;
+    }
+    fclose(f);
+    
+    //unarchiving
+    BOOL result = [CMCrashLogManager importCrashLogArchiveAtPath:[NSString stringWithCString:dumpTmpFile encoding:NSUTF8StringEncoding] forDevice:self error:error];
+    
+    return result;
 }
 
 #pragma mark - Misc

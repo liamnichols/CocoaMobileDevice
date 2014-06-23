@@ -9,3 +9,4 @@
 #import <CocoaMobileDevice/CMDeviceManger.h>
 #import <CocoaMobileDevice/CMDevice.h>
 #import <CocoaMobileDevice/CMConstants.h>
+#import <CocoaMobileDevice/CMCrashLogManager.h>
