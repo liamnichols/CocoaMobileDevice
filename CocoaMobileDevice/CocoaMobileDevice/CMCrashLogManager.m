@@ -310,4 +310,9 @@ copy_data(struct archive *ar, struct archive *aw)
     return [self objectForKey:@"cmd_filename"];
 }
 
+- (NSString *)crashLogBundleIdentifier
+{
+    return [self objectForKey:@"bundleID"];
+}
+
 @end
