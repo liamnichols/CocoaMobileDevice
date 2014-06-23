@@ -16,4 +16,22 @@
 
 + (NSString *)storageLocation;
 
+- (instancetype)initWithDevice:(CMDevice *)device;
+
+- (BOOL)hasCrashLogs;
+
+- (NSDate *)lastUpdated;
+
+- (NSArray *)crashLogMetadata;
+
+- (NSURL *)crashLogLocation:(NSString *)name;
+
+- (NSArray *)crashLogBundleIdentifiers;
+
+@end
+
+@interface NSDictionary (CMCrashLogManager)
+
+- (NSString *)crashLogName;
+
 @end

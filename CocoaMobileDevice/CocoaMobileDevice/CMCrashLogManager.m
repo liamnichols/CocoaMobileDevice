@@ -34,6 +34,15 @@
 
 @end
 
+@interface CMCrashLogManager ()
+
+@property (nonatomic, strong) CMDevice *device;
+
+@property (nonatomic, strong) NSDictionary *directoryListing;
+@property (nonatomic, strong) NSDate *lastUpdated;
+
+@end
+
 @implementation CMCrashLogManager
 
 #pragma mark - Storage Location
@@ -241,6 +250,64 @@ copy_data(struct archive *ar, struct archive *aw)
             return r;
         }
     }
+}
+
+#pragma mark - Reading Logs
+
+- (instancetype)initWithDevice:(CMDevice *)device
+{
+    self = [super init];
+    if (self)
+    {
+        [[self class] verifyLocationAndAssertIfNeeded];
+        
+        self.device = device;
+        
+        [self loadDirectoryListing];
+    }
+    return self;
+}
+
+- (void)loadDirectoryListing
+{
+    NSString *path = [[[CMCrashLogManager storageLocation] stringByAppendingPathComponent:self.device.UDID] stringByAppendingPathComponent:@"directory_listing.json"];
+    NSData *data = [NSData dataWithContentsOfFile:path];
+    
+    if (data) {
+        self.directoryListing = [NSJSONSerialization JSONObjectWithData:data options:0 error:nil];
+        self.lastUpdated = [NSDate dateWithTimeIntervalSinceReferenceDate:[[self.directoryListing objectForKey:@"updated"] doubleValue]];
+    }
+}
+
+- (BOOL)hasCrashLogs
+{
+    return self.directoryListing != nil;
+}
+
+- (NSArray *)crashLogMetadata
+{
+    return [self.directoryListing objectForKey:@"crashes"];
+}
+
+- (NSURL *)crashLogLocation:(NSString *)name
+{
+    NSString *path = [[[CMCrashLogManager storageLocation] stringByAppendingPathComponent:self.device.UDID] stringByAppendingPathComponent:name];
+    return [NSURL fileURLWithPath:path];
+}
+
+- (NSArray *)crashLogBundleIdentifiers
+{
+    NSArray *bundleIDs = [[self crashLogMetadata] valueForKeyPath:@"@distinctUnionOfObjects.bundleID"];
+    return bundleIDs;
+}
+
+@end
+
+@implementation NSDictionary (CMCrashLogManager)
+
+- (NSString *)crashLogName
+{
+    return [self objectForKey:@"cmd_filename"];
 }
 
 @end

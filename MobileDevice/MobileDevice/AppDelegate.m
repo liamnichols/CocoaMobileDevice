@@ -280,35 +280,33 @@
     [self connectIfNeeded];
     
     NSError *error = nil;
-//    NSData *screenshot = [self.selectedDevice getScreenshot:&error];
-    
-    [self.selectedDevice reloadDeviceCrashLogs:&error];
+    NSData *screenshot = [self.selectedDevice getScreenshot:&error];
     
     [self.selectedDevice disconnect];
     
-//    if (!error)
-//    {
-//        NSString *desktop = [NSHomeDirectory() stringByAppendingPathComponent:@"Desktop"];
-//        
-//        static NSDateFormatter *dateFormatter = nil;
-//        static dispatch_once_t onceToken;
-//        dispatch_once(&onceToken, ^{
-//            dateFormatter = [[NSDateFormatter alloc] init];
-//            dateFormatter.dateFormat = @"yyy-MM-dd 'at' HH.mm.ss";
-//        });
-//        
-//        NSString *name = [NSString stringWithFormat:@"Screen Shot %@.tiff", [dateFormatter stringFromDate:[NSDate date]]];
-//        NSString *file = [desktop stringByAppendingPathComponent:name];
-//        
-//        [screenshot writeToFile:file atomically:YES];
-//        
-//        LogToUI(@"Screenshot saved to: %@", file);
-//    }
-//    else
-//    {
-//        LogToUI(@"Error saving screenshot: %@", error);
-//        [[NSAlert alertWithError:error] runModal];
-//    }
+    if (!error)
+    {
+        NSString *desktop = [NSHomeDirectory() stringByAppendingPathComponent:@"Desktop"];
+        
+        static NSDateFormatter *dateFormatter = nil;
+        static dispatch_once_t onceToken;
+        dispatch_once(&onceToken, ^{
+            dateFormatter = [[NSDateFormatter alloc] init];
+            dateFormatter.dateFormat = @"yyy-MM-dd 'at' HH.mm.ss";
+        });
+        
+        NSString *name = [NSString stringWithFormat:@"Screen Shot %@.tiff", [dateFormatter stringFromDate:[NSDate date]]];
+        NSString *file = [desktop stringByAppendingPathComponent:name];
+        
+        [screenshot writeToFile:file atomically:YES];
+        
+        LogToUI(@"Screenshot saved to: %@", file);
+    }
+    else
+    {
+        LogToUI(@"Error saving screenshot: %@", error);
+        [[NSAlert alertWithError:error] runModal];
+    }
 }
 
 #pragma mark - Logging
