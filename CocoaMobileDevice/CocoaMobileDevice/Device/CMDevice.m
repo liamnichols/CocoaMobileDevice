@@ -135,7 +135,7 @@ NSString *CMDeviceDomainMobileiTunes = @"com.apple.mobile.iTunes";
 
 -(id)readDomain:(NSString *)domain key:(NSString *)key error:(NSError *__autoreleasing *)error
 {
-    plist_t node;
+    plist_t node = NULL;
     const char *cDomain = NULL;
 	const char *cKey = NULL;
     
@@ -153,13 +153,14 @@ NSString *CMDeviceDomainMobileiTunes = @"com.apple.mobile.iTunes";
         if (node)
         {
             id response = [CMPlistSerialization plistObjectFromNode:node error:nil];
-            return response;
             
             plist_free(node);
             node = NULL;
+            
+            return response;
         }
     }
-
+    
     if (error) {
         *error = [NSError errorWithLockdownErrorCode:rtn];
     }
