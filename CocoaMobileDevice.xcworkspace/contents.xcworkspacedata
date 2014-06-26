@@ -2,9 +2,9 @@
 <Workspace
    version = "1.0">
    <FileRef
-      location = "group:CocoaMobileDevice/CocoaMobileDevice.xcodeproj">
+      location = "group:MobileDevice/MobileDevice.xcodeproj">
    </FileRef>
    <FileRef
-      location = "group:MobileDevice/MobileDevice.xcodeproj">
+      location = "group:CocoaMobileDevice/CocoaMobileDevice.xcodeproj">
    </FileRef>
 </Workspace>
